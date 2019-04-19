@@ -58,12 +58,31 @@ class AuthSpotifyController extends Controller {
         $session->requestAccessToken($_GET['code']);
 
         $accessToken = $session->getAccessToken();
+        $refreshToken = $session->getRefreshToken();
 
         $user = Auth::user();
         $user->spotify_token = $accessToken;
+        $user->spotify_refreshtoken = $refreshToken;
         $user->save();
 
         return redirect()->route('home');
+    }
+
+    public static function refreshToken() {
+        $url = env('APP_URL');
+
+        $session = new SpotifyWebAPI\Session(
+            '936b7eace3ed43059613cd0ac9a18ec2',
+            'd284a72f3b3543a392486f3d9ddcfe23',
+            $url.'/gravartoken'
+        );
+
+        $user = Auth::user();
+
+        $session->refreshAccessToken($user->spotify_refreshtoken);
+        $accessToken = $session->getAccessToken();
+        $user->spotify_token = $accessToken;
+        $user->save();
     }
 
 }

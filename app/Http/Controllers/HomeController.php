@@ -26,6 +26,8 @@ class HomeController extends Controller
     public function index() {
 
         try {
+            AuthSpotifyController::refreshToken();
+
             $api = new SpotifyWebAPI\SpotifyWebAPI();
             $api->setAccessToken(Auth::user()->spotify_token);
 

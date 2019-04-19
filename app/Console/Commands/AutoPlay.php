@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\AuthSpotifyController;
 use App\ItensFila;
 use App\User;
 use Illuminate\Console\Command;
@@ -67,6 +68,8 @@ class AutoPlay extends Command
                     } else {
                         throw new \Exception("Nenhum dispositivo conectado.");
                     }
+
+                    AuthSpotifyController::refreshToken($user);
                 } catch (\Exception $e) {
                     $this->line('');
                     $this->error('User: ' . $user->id . ' - ' . $user->name);

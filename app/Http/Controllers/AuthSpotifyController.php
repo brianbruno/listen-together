@@ -68,7 +68,7 @@ class AuthSpotifyController extends Controller {
         return redirect()->route('home');
     }
 
-    public static function refreshToken() {
+    public static function refreshToken($user = null) {
         $url = env('APP_URL');
 
         $session = new SpotifyWebAPI\Session(
@@ -77,7 +77,9 @@ class AuthSpotifyController extends Controller {
             $url.'/gravartoken'
         );
 
-        $user = Auth::user();
+        if ($user == null) {
+            $user = Auth::user();
+        }
 
         $session->refreshAccessToken($user->spotify_refreshtoken);
         $accessToken = $session->getAccessToken();

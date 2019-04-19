@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="601a2acb-3cff-426e-9517-c3aa4d6a3671" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Events/MusicaRemovida.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Notificacao.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/listen-together.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/listen-together.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/AutoPlay.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/AutoPlay.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/MusicaAdicionada.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/MusicaAdicionada.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/MusicaFinalizada.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/MusicaFinalizada.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/MusicaIniciada.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/MusicaIniciada.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/broadcasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/broadcasting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/channels.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/channels.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="362">
@@ -76,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+            <state relative-caret-position="129">
+              <caret line="38" selection-start-line="38" selection-end-line="41" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -142,12 +119,12 @@
         <option value="$PROJECT_DIR$/config/broadcasting.php" />
         <option value="$PROJECT_DIR$/routes/channels.php" />
         <option value="$PROJECT_DIR$/app/Events/MusicaAdicionada.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Events/MusicaFinalizada.php" />
         <option value="$PROJECT_DIR$/app/Events/MusicaIniciada.php" />
         <option value="$PROJECT_DIR$/app/Events/MusicaRemovida.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AutoPlay.php" />
         <option value="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" />
+        <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
   </component>
@@ -332,12 +309,12 @@
       <option name="presentableId" value="Default" />
       <updated>1555676144037</updated>
       <workItem from="1555676146086" duration="17292000" />
-      <workItem from="1555698561971" duration="8740000" />
+      <workItem from="1555698561971" duration="9262000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26032000" />
+    <option name="totallyTimeSpent" value="26554000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -350,6 +327,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -674,13 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Events/MusicaAdicionada.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
@@ -757,6 +728,13 @@
             <element signature="e#6532#7074#0" />
             <element signature="e#10873#10905#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="38" selection-start-line="38" selection-end-line="41" selection-end-column="22" />
         </state>
       </provider>
     </entry>

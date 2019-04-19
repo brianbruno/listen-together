@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MusicaAdicionada;
 use App\Fila;
 use App\ItensFila;
 use App\User;
@@ -30,7 +31,11 @@ class FilaController extends Controller {
         $musicas = $results->tracks->items;
 
         $currentTrack = $api->getMyCurrentTrack();
-        $currentTrack = $currentTrack->item->name. " - " . $currentTrack->item->artists[0]->name;
+        if ($currentTrack != null) {
+            $currentTrack = $currentTrack->item->name. " - " . $currentTrack->item->artists[0]->name;
+        } else {
+            $currentTrack = "";
+        }
 
 
         $fila = Fila::where('name', '=', 'default')->first();
@@ -64,6 +69,8 @@ class FilaController extends Controller {
         $itemFila->spotify_uri = $track->uri;
         $itemFila->ms_duration = $track->duration_ms;
         $itemFila->save();
+
+        event(new MusicaAdicionada($itemFila));
 
         return redirect('/');
 

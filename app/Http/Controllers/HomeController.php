@@ -30,7 +30,12 @@ class HomeController extends Controller
             $api->setAccessToken(Auth::user()->spotify_token);
 
             $currentTrack = $api->getMyCurrentTrack();
-            $currentTrack = $currentTrack->item->name. " - " . $currentTrack->item->artists[0]->name;
+
+            if ($currentTrack != null) {
+                $currentTrack = $currentTrack->item->name. " - " . $currentTrack->item->artists[0]->name;
+            } else {
+                $currentTrack = "";
+            }
 
             $fila = Fila::where('name', '=', 'default')->first();
 

@@ -6,6 +6,9 @@ use App\ItensFila;
 use App\User;
 use Illuminate\Console\Command;
 use SpotifyWebAPI;
+use App\Events\MusicaFinalizada;
+use App\Events\MusicaIniciada;
+
 
 class AutoPlay extends Command
 {
@@ -52,10 +55,15 @@ class AutoPlay extends Command
                 try {
                     $api = new SpotifyWebAPI\SpotifyWebAPI();
                     $api->setAccessToken($user->spotify_token);
+                    $devices = $api->getMyDevices()->devices;
 
-                    $api->play(false, [
-                        'uris' => [$item->spotify_uri],
-                    ]);
+                    if ($devices != null && sizeof($devices) > 0) {
+                        $api->play($devices[0]->id, [
+                            'uris' => [$item->spotify_uri],
+                        ]);
+                    } else {
+                        throw new \Exception("Nenhum dispositivo conectado.");
+                    }
                 } catch (\Exception $e) {
                     $this->line('');
                     $this->error('User: ' . $user->id . ' - ' . $user->name);
@@ -67,12 +75,12 @@ class AutoPlay extends Command
             $item->save();
             $this->line('');
             $this->info('Song started: '.$item->name);
+            event(new MusicaIniciada($item));
 
             $tempoTotalSegundos = $item->ms_duration / 1000;
             $bar = $this->output->createProgressBar($tempoTotalSegundos);
 
             $tempo = 1;
-
             $bar->start();
 
             while ($tempo < $tempoTotalSegundos) {
@@ -85,6 +93,7 @@ class AutoPlay extends Command
 
             $item->status = "F";
             $item->save();
+            event(new MusicaFinalizada($item));
         }
 
     }

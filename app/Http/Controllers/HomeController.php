@@ -35,15 +35,10 @@ class HomeController extends Controller
             $fila = Fila::where('name', '=', 'default')->first();
 
             if ($fila != null) {
-                $itensFila = $fila->itens()->limit(15)->get();
+                $itensFila = $fila->itens()->where('status', 'N')->limit(15)->get();
             } else {
                 $itensFila = [];
             }
-            /*
-                    $api->play(false, [
-                        'uris' => ['spotify:track:7xGfFoTpQ2E7fRF5lN10tr'],
-                    ]);*/
-
 
             return view('home', ['track' => $currentTrack, 'itensFila' => $itensFila]);
         } catch (SpotifyWebAPI\SpotifyWebAPIException $e) {

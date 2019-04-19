@@ -30,3 +30,5 @@ Route::get('/buscarmusicas', 'FilaController@buscarMusicas')->name('buscar-music
 Route::get('/adicionarmusica/trackid/{trackid}/fila/{fila}', 'FilaController@adicionarMusica')->name('adicionar-musica-fila');
 
 Route::get('/executaritem/{id}', 'FilaController@executarMusica')->name('executar-item');
+
+Route::get('/migrate', 'HostController@migrate');

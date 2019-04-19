@@ -24,10 +24,12 @@ class AuthSpotifyController extends Controller {
     }
 
     public function autorizar() {
+        $url = env('APP_URL');
+
         $session = new SpotifyWebAPI\Session(
             '936b7eace3ed43059613cd0ac9a18ec2',
             'd284a72f3b3543a392486f3d9ddcfe23',
-            'http://localhost:8000/gravartoken'
+            $url.'/gravartoken'
         );
         $options = [
             'scope' => [
@@ -44,10 +46,12 @@ class AuthSpotifyController extends Controller {
     }
 
     public function gravarCodigo() {
+        $url = env('APP_URL');
+
         $session = new SpotifyWebAPI\Session(
             '936b7eace3ed43059613cd0ac9a18ec2',
             'd284a72f3b3543a392486f3d9ddcfe23',
-            'http://localhost:8000/gravartoken'
+            $url.'/gravartoken'
         );
 
 

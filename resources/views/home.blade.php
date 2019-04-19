@@ -24,63 +24,46 @@
                     </div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                        <div>
+                            <h3>Buscar música</h3>
 
-                        <table>
-                            <thead>
-                            <tr>
-                                <th> música</th>
-                                <th> fila</th>
-                                <th> iniciar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($itensFila as $item)
-                                <tr>
-                                    <td> {{$item->name}} </td>
-                                    <td> {{$item->fila()->first()->name }} </td>
-                                    <td><a href="{{ route('executar-item', ['id' => $item->id]) }}"><i class="material-icons">play_arrow</i></a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <hr>
-                        <h3>Buscar música</h3>
-
-                        <form action="{{ route('buscar-musicas') }}" method="get">
-                            @csrf
-                            <div class="input-group mb-3">
-                                <input type="text" name="musica" class="form-control" placeholder="Digite a busca" aria-label="Busca">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                            <form action="{{ route('buscar-musicas') }}" method="get">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input type="text" name="musica" class="form-control" placeholder="Digite a busca" aria-label="Busca">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                        <div>
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-                        @if(!empty($retornoBusca) && $retornoBusca)
-                            <table>
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th> música</th>
-                                    <th> artista</th>
-                                    <th> adicionar</th>
+                                    <th> fila</th>
+                                    <th> usuário</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($musicas as $musica)
+                                @foreach($itensFila as $item)
                                     <tr>
-                                        <td> {{ $musica->name }} </td>
-                                        <td> {{ $musica->artists[0]->name }}</td>
-                                        <td> <a href="{{ route('adicionar-musica-fila', ['trackid' => $musica->id, 'fila' => 'default'] ) }}" role="button" class="btn btn-primary btn-sm">Adicionar</a></td>
+                                        <td> {{$item->name}} </td>
+                                        <td> {{$item->fila()->first()->name }} </td>
+                                        <td> {{$item->user()->first()->name }} </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                        @endif
+                        </div>
+
                     </div>
                 </div>
             </div>

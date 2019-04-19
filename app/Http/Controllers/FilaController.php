@@ -41,7 +41,7 @@ class FilaController extends Controller {
             $itensFila = [];
         }
 
-        return view('home', ['retornoBusca' => true, 'musicas' => $musicas, 'track' => $currentTrack, 'itensFila' => $itensFila]);
+        return view('app.buscarmusicas', ['retornoBusca' => true, 'musicas' => $musicas, 'track' => $currentTrack, 'itensFila' => $itensFila]);
 
     }
 
@@ -59,7 +59,8 @@ class FilaController extends Controller {
 
         $itemFila = new ItensFila();
         $itemFila->id_fila = $fila->id;
-        $itemFila->name = $track->name. " - " . $track->artists[0]->name;
+        $itemFila->id_user = Auth::user()->id;
+        $itemFila->name = $track->artists[0]->name. " - " . $track->name;
         $itemFila->spotify_uri = $track->uri;
         $itemFila->ms_duration = $track->duration_ms;
         $itemFila->save();

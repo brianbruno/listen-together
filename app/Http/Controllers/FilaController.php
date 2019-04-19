@@ -9,10 +9,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\MusicaAdicionada;
+use App\Events\MusicaRemovida;
 use App\Fila;
 use App\ItensFila;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SpotifyWebAPI;
 
 class FilaController extends Controller {
@@ -21,58 +23,101 @@ class FilaController extends Controller {
         $this->middleware('auth');
     }
 
-    public function buscarMusicas(\Illuminate\Http\Request $request) {
+    public function buscarMusica(\Illuminate\Http\Request $request) {
 
-        $api = new SpotifyWebAPI\SpotifyWebAPI();
-        $api->setAccessToken(Auth::user()->spotify_token);
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
 
-        $results = $api->search($request->musica, 'track');
 
-        $musicas = $results->tracks->items;
+        try {
 
-        $currentTrack = $api->getMyCurrentTrack();
-        if ($currentTrack != null) {
-            $currentTrack = $currentTrack->item->name. " - " . $currentTrack->item->artists[0]->name;
-        } else {
-            $currentTrack = "";
+
+            $api = new SpotifyWebAPI\SpotifyWebAPI();
+            $api->setAccessToken(Auth::user()->spotify_token);
+
+            $results = $api->search($request->busca, 'track');
+
+            $musicas = $results->tracks->items;
+
+            $retorno['data'] = $musicas;
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
         }
 
-
-        $fila = Fila::where('name', '=', 'default')->first();
-
-        if ($fila != null) {
-            $itensFila = $fila->itens()->limit(15)->get();
-        } else {
-            $itensFila = [];
-        }
-
-        return view('app.buscarmusicas', ['retornoBusca' => true, 'musicas' => $musicas, 'track' => $currentTrack, 'itensFila' => $itensFila]);
+        return response()->json($retorno, 200);
 
     }
 
-    public function adicionarMusica($trackid, $fila) {
+    public function adicionarMusica(\Illuminate\Http\Request $request) {
 
-        $api = new SpotifyWebAPI\SpotifyWebAPI();
-        $api->setAccessToken(Auth::user()->spotify_token);
-        $track = $api->getTrack($trackid);
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
 
-        $fila = Fila::first();
 
-        if ($fila == null) {
-            throw new \Exception("Nenhuma fila cadastrada");
+        try {
+
+            $api = new SpotifyWebAPI\SpotifyWebAPI();
+            $api->setAccessToken(Auth::user()->spotify_token);
+            $track = $api->getTrack($request->uri);
+
+            $fila = Fila::first();
+
+            if ($fila == null) {
+                throw new \Exception("Nenhuma fila cadastrada");
+            }
+
+            $itemFila = new ItensFila();
+            $itemFila->id_fila = $fila->id;
+            $itemFila->id_user = Auth::user()->id;
+            $itemFila->name = $track->artists[0]->name. " - " . $track->name;
+            $itemFila->spotify_uri = $track->uri;
+            $itemFila->ms_duration = $track->duration_ms;
+            $itemFila->save();
+
+            event(new MusicaAdicionada($itemFila));
+
+            $retorno['message'] = 'Operação realizada com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
         }
 
-        $itemFila = new ItensFila();
-        $itemFila->id_fila = $fila->id;
-        $itemFila->id_user = Auth::user()->id;
-        $itemFila->name = $track->artists[0]->name. " - " . $track->name;
-        $itemFila->spotify_uri = $track->uri;
-        $itemFila->ms_duration = $track->duration_ms;
-        $itemFila->save();
+        return response()->json($retorno, 200);
 
-        event(new MusicaAdicionada($itemFila));
+    }
 
-        return redirect('/');
+    public function removerMusica(\Illuminate\Http\Request $request) {
+
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+
+            $itemFila = ItensFila::find($request->id);
+
+            $itemFila->delete();
+
+            event(new MusicaRemovida());
+
+            $retorno['message'] = 'Operação realizada com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
 
     }
 
@@ -100,5 +145,68 @@ class FilaController extends Controller {
         $item->save();
 
         return redirect()->route('home');
+    }
+    
+    public function proximasMusicas() {
+
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+
+            $results = DB::select(DB::raw("
+                  SELECT itens_fila.name name, itens_fila.id, filas.name queue_name, users.name username FROM itens_fila 
+                  LEFT JOIN filas ON itens_fila.id_fila = filas.id 
+                  LEFT JOIN users ON itens_fila.id_user = users.id
+                  WHERE itens_fila.status = 'N'
+                  ORDER BY itens_fila.id
+                  LIMIT 50"));
+
+            $retorno['data'] = $results;
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+    }
+
+    public function getMusicaAtual() {
+
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+
+            $resultado = DB::select(DB::raw("
+                  SELECT itens_fila.name name, users.id, filas.name queue_name, users.name username FROM itens_fila 
+                  LEFT JOIN filas ON itens_fila.id_fila = filas.id 
+                  LEFT JOIN users ON itens_fila.id_user = users.id
+                  WHERE itens_fila.status = 'I'
+                  ORDER BY itens_fila.id
+                  LIMIT 1"));
+
+            if (sizeof($resultado) > 0) {
+                $retorno['data'] = $resultado[0]->name . " por " . $resultado[0]->username;
+            } else {
+                $retorno['data'] = 'Não foi possível recuperar a música atual.';
+            }
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+
     }
 }

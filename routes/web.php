@@ -23,12 +23,20 @@ Route::get('/authspotify', 'AuthSpotifyController@autorizar')->name('autorizar-s
 
 Route::get('/gravartoken', 'AuthSpotifyController@gravarCodigo');
 
-Route::get('/trocarstatus', 'UserController@trocarStatus')->name('trocar-status');
-
 Route::get('/buscarmusicas', 'FilaController@buscarMusicas')->name('buscar-musicas');
 
-Route::get('/adicionarmusica/trackid/{trackid}/fila/{fila}', 'FilaController@adicionarMusica')->name('adicionar-musica-fila');
-
-Route::get('/executaritem/{id}', 'FilaController@executarMusica')->name('executar-item');
-
 Route::get('/migrate', 'HostController@migrate');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::prefix('api')->group(function () {
+        Route::get('/getproximasmusicas', 'FilaController@proximasMusicas');
+        Route::get('/getmusicaatual', 'FilaController@getMusicaAtual');
+        Route::get('/trocarstatus', 'UserController@trocarStatus')->name('trocar-status');
+        Route::get('/getuserdata', 'UserController@getUserData');
+        Route::post('/buscarmusica', 'FilaController@buscarMusica');
+        Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
+        Route::post('/removermusica', 'FilaController@removerMusica');
+    });
+
+});

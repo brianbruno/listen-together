@@ -2,14 +2,17 @@
 
 namespace App\Events;
 
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\ItensFila;
 
 class MusicaFinalizada implements ShouldBroadcastNow {
 
-    use SerializesModels;
+    use SerializesModels, InteractsWithSockets, Dispatchable;
 
     public $item;
 
@@ -18,10 +21,6 @@ class MusicaFinalizada implements ShouldBroadcastNow {
     }
 
     public function broadcastOn() {
-        return new PrivateChannel('fila.default');
-    }
-
-    public function broadcastAs() {
-        return 'fila.default';
+        return new Channel('filas');
     }
 }

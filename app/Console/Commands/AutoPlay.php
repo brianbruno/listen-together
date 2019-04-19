@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\ItensFila;
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use SpotifyWebAPI;
 use App\Events\MusicaFinalizada;
 use App\Events\MusicaIniciada;
@@ -42,11 +43,13 @@ class AutoPlay extends Command
      */
     public function handle() {
 
+        ItensFila::where('status', 'I')->update(['status' => 'F']);
+
         while (true) {
             $item = ItensFila::where('status', '=', 'N')->orderBy('id')->first();
 
             if ($item == null) {
-                break;
+                $item = ItensFila::orderBy(DB::raw('RAND()'))->first();
             }
 
             $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
@@ -69,6 +72,9 @@ class AutoPlay extends Command
                     $this->error('User: ' . $user->id . ' - ' . $user->name);
                     $this->error($e->getMessage());
                     $this->line('');
+
+                    $user->spotify_status = 0;
+                    $user->save();
                 }
             }
             $item->status = "I";

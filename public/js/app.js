@@ -6619,7 +6619,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.musicaEmReproducao[data-v-461233f6] {\n    font-family: 'Fredoka One', cursive;\n    color: white;\n}\n.autorMusicaReproducao[data-v-461233f6] {\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\n.musicaEmReproducao[data-v-461233f6] {\n    font-family: 'Fredoka One', cursive;\n    color: white;\n}\n.autorMusicaReproducao[data-v-461233f6] {\n    color: white;\n}\n.input[data-v-461233f6] {\n    color: white;\n    background-color:transparent;\n}\ninput[data-v-461233f6]:focus,\nselect[data-v-461233f6]:focus,\ntextarea[data-v-461233f6]:focus,\nbutton[data-v-461233f6]:focus {\n    outline: none;\n}\n\n", ""]);
 
 // exports
 
@@ -51534,11 +51534,12 @@ var render = function() {
                 expression: "buscaMusica"
               }
             ],
-            staticClass: "form-control",
+            staticClass: "form-control input",
             attrs: {
               type: "text",
               name: "musica",
               placeholder: "Digite a busca",
+              autocomplete: "off",
               "aria-label": "Busca"
             },
             domProps: { value: _vm.buscaMusica },

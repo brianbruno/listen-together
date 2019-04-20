@@ -40,8 +40,8 @@
             <h3>Buscar música</h3>
 
             <div class="input-group mb-3">
-                <input v-model="buscaMusica" type="text" name="musica" class="form-control" placeholder="Digite a busca"
-                       v-on:keyup.enter="pesquisarMusica" aria-label="Busca">
+                <input v-model="buscaMusica" type="text" name="musica" class="form-control input" placeholder="Digite a busca"
+                       v-on:keyup.enter="pesquisarMusica" autocomplete="off" aria-label="Busca">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" id="button-addon2" v-on:click="pesquisarMusica" >Buscar</button>
                 </div>
@@ -314,4 +314,15 @@
     .autorMusicaReproducao {
         color: white;
     }
+    .input {
+        color: white;
+        background-color:transparent;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
 </style>

@@ -46,5 +46,7 @@ class ProcessarFilas implements ShouldQueue
         }
         $item->status = "I";
         $item->save();
+
+        echo "Música iniciada! $item->name \n";
     }
 }

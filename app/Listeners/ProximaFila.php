@@ -28,7 +28,6 @@ class ProximaFila {
         $item = $event->getItem();
         $fila = Fila::find($item->id_fila);
         $tempoTotalSegundos = $item->ms_duration / 1000;
-        echo "Enfileirando a próxima fila.\n";
         ProcessarFilas::dispatch($fila)->delay(now()->addSeconds($tempoTotalSegundos));
     }
 

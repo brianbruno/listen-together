@@ -2103,6 +2103,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2333,6 +2336,27 @@ __webpack_require__.r(__webpack_exports__);
         self.$refs.topProgress.fail();
         self.$refs.topProgress.done();
         self.$root.$emit('notificar', 'Ocorreu um erro ao remover a música. ', 'error');
+        console.log(err);
+      });
+    },
+    pularMusica: function pularMusica() {
+      var self = this;
+      self.$refs.topProgress.start();
+      axios.post('/api/proximamusica', {
+        idFila: self.idFilaAtual
+      }).then(function (res) {
+        self.$refs.topProgress.done();
+
+        if (!res.data.status) {
+          self.$refs.topProgress.fail();
+          self.$root.$emit('notificar', res.data.message, 'error');
+        } else {
+          self.$root.$emit('notificar', 'É pra já!', 'success');
+        }
+      })["catch"](function (err) {
+        self.$refs.topProgress.fail();
+        self.$refs.topProgress.done();
+        self.$root.$emit('notificar', 'Ocorreu um erro ao passar a música. ', 'error');
         console.log(err);
       });
     }
@@ -51912,6 +51936,8 @@ var render = function() {
           ])
         ])
       ]),
+      _vm._v(" "),
+      _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "text-white" }, [
         _c("h3", [_vm._v("Buscar música")]),

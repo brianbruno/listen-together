@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\HistoricoMusicas;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -44,6 +45,9 @@ class ProximaMusica implements ShouldQueue {
                 $api->play($devices[0]->id, [
                     'uris' => [$this->uri],
                 ]);
+
+                dispatch((new GravarHistorico($user, $this->uri))->onQueue('system'));
+
             } else {
                 $user->spotify_status = 0;
                 $user->save();

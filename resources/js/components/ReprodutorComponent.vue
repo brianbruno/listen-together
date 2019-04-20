@@ -7,6 +7,7 @@
                     <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" class="img-fluid"/>
                     <h1 class="musicaEmReproducao">{{ musicaAtual }}</h1>
                     <small class="autorMusicaReproducao">{{ musicaAtualAutor }}</small>
+                    <!--<a href="#" @click="pularMusica()"><p><small>pular</small></p></a>-->
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 text-white">
@@ -35,6 +36,8 @@
                 </div>
             </div>
         </div>
+
+        <hr>
 
         <div class="text-white">
             <h3>Buscar música</h3>
@@ -312,6 +315,30 @@
                     self.$refs.topProgress.fail();
                     self.$refs.topProgress.done();
                     self.$root.$emit('notificar', 'Ocorreu um erro ao remover a música. ', 'error');
+                    console.log(err);
+                });
+            },
+            pularMusica(){
+                const self = this;
+
+                self.$refs.topProgress.start();
+
+                axios.post('/api/proximamusica', {idFila: self.idFilaAtual})
+                    .then(res => {
+
+                        self.$refs.topProgress.done();
+
+                        if (!res.data.status) {
+                            self.$refs.topProgress.fail();
+                            self.$root.$emit('notificar', res.data.message, 'error');
+                        } else {
+                            self.$root.$emit('notificar', 'É pra já!', 'success');
+                        }
+
+                    }).catch(err => {
+                    self.$refs.topProgress.fail();
+                    self.$refs.topProgress.done();
+                    self.$root.$emit('notificar', 'Ocorreu um erro ao passar a música. ', 'error');
                     console.log(err);
                 });
             }

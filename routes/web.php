@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
         Route::post('/removermusica', 'FilaController@removerMusica');
         Route::post('/trocarfila', 'UserController@trocarFila');
+        Route::post('/proximamusica', 'FilaController@proximaMusica');
     });
 
     Route::get('/criarfila', 'FilaController@getFilasUser')->name('filas-user');

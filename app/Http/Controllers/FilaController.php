@@ -12,6 +12,7 @@ use App\Events\MusicaAdicionada;
 use App\Events\MusicaRemovida;
 use App\Fila;
 use App\ItensFila;
+use App\Jobs\FinalizarMusica;
 use App\Jobs\ProcessarFilas;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -337,6 +338,33 @@ class FilaController extends Controller {
 
             $fila->votos = $fila->votos+1;
             $fila->save();
+
+            $retorno['message'] = 'Operação realizada com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+    }
+
+    public function proximaMusica(\Illuminate\Http\Request $request) {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+
+            $fila = Fila::find($request->idFila);
+
+            $emExecucao = $fila->itens()->where('status', '=', 'I')->first();
+
+            if ($emExecucao != null) {
+                dispatch((new FinalizarMusica($emExecucao))->onQueue('system'));
+            }
 
             $retorno['message'] = 'Operação realizada com sucesso.';
             $retorno['status'] = true;

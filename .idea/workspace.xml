@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="601a2acb-3cff-426e-9517-c3aa4d6a3671" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/HistoricoMusicas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/ProximaMusica.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ProximaMusica.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/FinalizarMusica.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/FinalizarMusica.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/ProximaFila.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/ProximaFila.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/commands.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,58 +28,105 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FilaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="252" column="26" selection-start-line="252" selection-start-column="26" selection-end-line="252" selection-end-column="26" />
+            <state relative-caret-position="308">
+              <caret line="364" column="16" selection-start-line="364" selection-start-column="16" selection-end-line="364" selection-end-column="16" />
               <folding>
                 <element signature="e#122#154#0#PHP" expanded="true" />
+                <element signature="e#2664#3539#0#PHP" />
+                <element signature="e#3545#4154#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/AutoPlay.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="61" column="36" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+            <state relative-caret-position="155">
+              <caret line="325" column="56" selection-start-line="325" selection-start-column="50" selection-end-line="325" selection-end-column="56" />
               <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/commands.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="32" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="38" column="87" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
-              <folding>
-                <element signature="e#28#41#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/Filas.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-              <folding>
-                <element signature="e#3503#4533#0" />
-                <element signature="e#4562#5446#0" />
-                <element signature="e#5475#5591#0" />
+                <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#input#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#thead#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#button#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#button#1;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="e#3952#4853#0" />
+                <element signature="e#4045#4233#0" />
+                <element signature="e#4322#4388#0" />
+                <element signature="e#4424#4521#0" />
+                <element signature="e#4555#4652#0" />
+                <element signature="e#4686#4744#0" />
+                <element signature="e#4783#4833#0" />
+                <element signature="e#4875#4913#0" />
+                <element signature="e#5429#5468#0" />
+                <element signature="e#5524#5657#0" />
+                <element signature="e#5692#6817#0" />
+                <element signature="e#5881#6528#0" />
+                <element signature="e#6043#6134#0" />
+                <element signature="e#6177#6354#0" />
+                <element signature="e#6360#6450#0" />
+                <element signature="e#6543#6802#0" />
+                <element signature="e#6848#7586#0" />
+                <element signature="e#7033#7297#0" />
+                <element signature="e#7312#7571#0" />
+                <element signature="e#7616#8533#0" />
+                <element signature="e#7781#8244#0" />
+                <element signature="e#7829#8001#0" />
+                <element signature="e#8007#8122#0" />
+                <element signature="e#8259#8518#0" />
+                <element signature="e#8561#9154#0" />
+                <element signature="e#8725#8864#0" />
+                <element signature="e#8879#9138#0" />
+                <element signature="e#9186#11131#0" />
+                <element signature="e#9337#10908#0" />
+                <element signature="e#9456#10594#0" />
+                <element signature="e#9658#10504#0" />
+                <element signature="e#9948#10049#0" />
+                <element signature="e#10097#10402#0" />
+                <element signature="e#10609#10888#0" />
+                <element signature="e#10914#11116#0" />
+                <element signature="e#11172#12126#0" />
+                <element signature="e#11395#11833#0" />
+                <element signature="e#11500#11672#0" />
+                <element signature="e#11678#11810#0" />
+                <element signature="e#11848#12110#0" />
                 <element signature="n#style#0;n#!!top" />
+                <element signature="e#13135#13209#0" />
+                <element signature="e#13237#13266#0" />
+                <element signature="e#13278#13345#0" />
+                <element signature="e#13418#13448#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Jobs/FinalizarMusica.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="546">
+              <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+              <folding>
+                <element signature="e#28#60#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Listeners/FinalizarMusica.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+              <folding>
+                <element signature="e#116#148#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="37" column="27" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="27" />
+            <state relative-caret-position="357">
+              <caret line="42" column="67" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -110,6 +164,10 @@
       <find>getfilas</find>
       <find>adicionar</find>
       <find>dispa</find>
+      <find>remover</find>
+      <find>date</find>
+      <find>pular</find>
+      <find>$request</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -121,10 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Notifications/MusicaFinalizada.php" />
-        <option value="$PROJECT_DIR$/resources/js/bootstrap.js" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/config/broadcasting.php" />
         <option value="$PROJECT_DIR$/routes/channels.php" />
         <option value="$PROJECT_DIR$/app/Events/MusicaFinalizada.php" />
@@ -158,19 +212,23 @@
         <option value="$PROJECT_DIR$/app/Events/MusicaAdicionada.php" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Events/MusicaIniciada.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/ProximaFila.php" />
-        <option value="$PROJECT_DIR$/app/Jobs/ProximaMusica.php" />
         <option value="$PROJECT_DIR$/app/Jobs/FinalizarMusica.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AutoPlay.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/FinalizarMusica.php" />
         <option value="$PROJECT_DIR$/app/Jobs/ProcessarFilas.php" />
-        <option value="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_20_173143_add_votes_to_filas_table.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Filas.vue" />
-        <option value="$PROJECT_DIR$/commands.txt" />
         <option value="$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/HistoricoMusicas.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_20_215756_create_historico_musicas_table.php" />
+        <option value="$PROJECT_DIR$/commands.txt" />
+        <option value="$PROJECT_DIR$/app/Jobs/GravarHistorico.php" />
+        <option value="$PROJECT_DIR$/app/Jobs/ProximaMusica.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/ProximaFila.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/FinalizarMusica.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" />
       </list>
     </option>
@@ -292,19 +350,6 @@
               <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
               <item name="listen-together" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Console" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
-              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Console" type="462c0819:PsiDirectoryNode" />
-              <item name="Commands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
-              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -318,7 +363,25 @@
               <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
               <item name="listen-together" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Jobs" type="462c0819:PsiDirectoryNode" />
+              <item name="Listeners" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -336,10 +399,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\brian\Documents\Projetos-GIT\PHP\listen-together\app" />
       <recent name="C:\Users\brian\Documents\Projetos-GIT\PHP\listen-together\resources\views\layouts" />
       <recent name="C:\Users\brian\Documents\Projetos-GIT\PHP\listen-together\app\Events" />
       <recent name="C:\Users\brian\Documents\Projetos-GIT\PHP\listen-together\resources\js\components" />
-      <recent name="C:\Users\brian\Documents\Projetos-GIT\PHP\listen-together\app" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -373,12 +436,13 @@
       <workItem from="1555676146086" duration="17292000" />
       <workItem from="1555698561971" duration="10961000" />
       <workItem from="1555710447662" duration="6280000" />
-      <workItem from="1555731360707" duration="23547000" />
+      <workItem from="1555731360707" duration="24105000" />
+      <workItem from="1555796648907" duration="2512000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58080000" />
+    <option name="totallyTimeSpent" value="61150000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -393,7 +457,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1913767" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16263238" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -441,51 +505,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/console.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_19_132753_create_itens_fila_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
@@ -497,13 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="60" column="44" lean-forward="true" selection-start-line="41" selection-start-column="36" selection-end-line="60" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ItensFila.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -556,13 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_19_150352_add_useradded_to_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -666,38 +671,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Jobs/FinalizarMusica.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-          <folding>
-            <element signature="e#28#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Events/MusicaFinalizada.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/ProximaFila.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="87" />
-          <folding>
-            <element signature="e#116#146#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/FinalizarMusica.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#116#148#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Fila.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -709,46 +684,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Jobs/ProximaMusica.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="e#28#41#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Notificacao.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="13" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
-          <folding>
-            <element signature="e#5279#6386#0" />
-            <element signature="e#6417#7137#0" />
-            <element signature="e#7167#8084#0" />
-            <element signature="e#8112#8705#0" />
-            <element signature="e#8737#10682#0" />
-            <element signature="e#10723#11650#0" />
-            <element signature="e#11686#12592#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Jobs/ProcessarFilas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="26" />
-          <folding>
-            <element signature="e#28#58#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -773,29 +712,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="37" column="27" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/Filas.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-          <folding>
-            <element signature="e#3503#4533#0" />
-            <element signature="e#4562#5446#0" />
-            <element signature="e#5475#5591#0" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/AutoPlay.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
+        <state relative-caret-position="833">
           <caret line="61" column="36" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
           <folding>
             <element signature="e#40#53#0#PHP" expanded="true" />
@@ -803,16 +722,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/commands.txt">
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Filas.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-end-line="1" />
+        <state relative-caret-position="1071">
+          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_19_125811_add_status_spotify_to_users_table.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/HistoricoMusicas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_19_150352_add_useradded_to_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="30" selection-start-line="30" selection-end-line="31" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_20_215756_create_historico_musicas_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ItensFila.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/ProcessarFilas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+          <folding>
+            <element signature="e#28#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
+        <state relative-caret-position="358">
           <caret line="38" column="87" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
           <folding>
             <element signature="e#28#41#0#PHP" expanded="true" />
@@ -820,22 +789,162 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commands.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/GravarHistorico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+          <folding>
+            <element signature="e#28#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/ProximaMusica.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#28#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/ProximaFila.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="29" column="56" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+          <folding>
+            <element signature="e#116#146#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/FinalizarMusica.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+          <folding>
+            <element signature="e#116#148#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="100" column="46" selection-start-line="100" selection-start-column="46" selection-end-line="100" selection-end-column="46" />
+        <state relative-caret-position="25">
+          <caret line="99" column="29" lean-forward="true" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
           <folding>
             <element signature="e#122#135#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="42" column="67" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="325" column="56" selection-start-line="325" selection-start-column="50" selection-end-line="325" selection-end-column="56" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#input#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#thead#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#button#0;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#button#1;n#div#2;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#3952#4853#0" />
+            <element signature="e#4045#4233#0" />
+            <element signature="e#4322#4388#0" />
+            <element signature="e#4424#4521#0" />
+            <element signature="e#4555#4652#0" />
+            <element signature="e#4686#4744#0" />
+            <element signature="e#4783#4833#0" />
+            <element signature="e#4875#4913#0" />
+            <element signature="e#5429#5468#0" />
+            <element signature="e#5524#5657#0" />
+            <element signature="e#5692#6817#0" />
+            <element signature="e#5881#6528#0" />
+            <element signature="e#6043#6134#0" />
+            <element signature="e#6177#6354#0" />
+            <element signature="e#6360#6450#0" />
+            <element signature="e#6543#6802#0" />
+            <element signature="e#6848#7586#0" />
+            <element signature="e#7033#7297#0" />
+            <element signature="e#7312#7571#0" />
+            <element signature="e#7616#8533#0" />
+            <element signature="e#7781#8244#0" />
+            <element signature="e#7829#8001#0" />
+            <element signature="e#8007#8122#0" />
+            <element signature="e#8259#8518#0" />
+            <element signature="e#8561#9154#0" />
+            <element signature="e#8725#8864#0" />
+            <element signature="e#8879#9138#0" />
+            <element signature="e#9186#11131#0" />
+            <element signature="e#9337#10908#0" />
+            <element signature="e#9456#10594#0" />
+            <element signature="e#9658#10504#0" />
+            <element signature="e#9948#10049#0" />
+            <element signature="e#10097#10402#0" />
+            <element signature="e#10609#10888#0" />
+            <element signature="e#10914#11116#0" />
+            <element signature="e#11172#12126#0" />
+            <element signature="e#11395#11833#0" />
+            <element signature="e#11500#11672#0" />
+            <element signature="e#11678#11810#0" />
+            <element signature="e#11848#12110#0" />
+            <element signature="n#style#0;n#!!top" />
+            <element signature="e#13135#13209#0" />
+            <element signature="e#13237#13266#0" />
+            <element signature="e#13278#13345#0" />
+            <element signature="e#13418#13448#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/FinalizarMusica.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+          <folding>
+            <element signature="e#28#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FilaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="252" column="26" selection-start-line="252" selection-start-column="26" selection-end-line="252" selection-end-column="26" />
+        <state relative-caret-position="308">
+          <caret line="364" column="16" selection-start-line="364" selection-start-column="16" selection-end-line="364" selection-end-column="16" />
           <folding>
             <element signature="e#122#154#0#PHP" expanded="true" />
+            <element signature="e#2664#3539#0#PHP" />
+            <element signature="e#3545#4154#0#PHP" />
           </folding>
         </state>
       </provider>

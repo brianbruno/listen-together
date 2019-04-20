@@ -117,7 +117,7 @@ class FilaController extends Controller {
 
             $fila = Fila::find($itemFila->id_fila);
 
-            if ($fila->itens()->count-1 < 3) {
+            if ($fila->itens()->count()-1 < 3) {
                 $retorno['message'] = 'Uma fila precisa ter pelo menos 3 músicas. Adicione para remover!!';
             } else {
                 $itemFila->delete();
@@ -249,7 +249,8 @@ class FilaController extends Controller {
                   FROM filas
                   LEFT JOIN users ON users.id = filas.id_user
                   WHERE filas.status = 'A'
-                  ORDER BY votos DESC"));
+                  ORDER BY votos DESC
+                  LIMIT 50"));
 
             $retorno['data'] = $results;
             $retorno['message'] = 'Dados recuperados com sucesso.';

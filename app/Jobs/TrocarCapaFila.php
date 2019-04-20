@@ -36,8 +36,7 @@ class TrocarCapaFila implements ShouldQueue
         $fila = $this->fila;
         $musica = $this->musica;
 
-        $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')
-                    ->where('id_fila', $fila->id)->get();
+        $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
 
         foreach ($users as $user) {
             try {

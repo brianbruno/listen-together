@@ -98,6 +98,7 @@ class UserController extends Controller {
                 $item = ItensFila::where('id_fila', $fila->id)->where('status', 'I')->first();
                 if ($item != null) {
                     ProximaMusica::dispatchNow($user, $item->spotify_uri);
+                    $user->spotify_status = '1';
                 }
 
             } else {

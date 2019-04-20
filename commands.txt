@@ -1,1 +1,1 @@
-php artisan queue:work --tries=3
+php artisan queue:work --tries=1

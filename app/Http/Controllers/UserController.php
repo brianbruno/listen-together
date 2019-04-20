@@ -8,7 +8,8 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\DB;
+use SpotifyWebAPI;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
@@ -39,6 +40,26 @@ class UserController extends Controller {
 
             $user->spotify_status = $novoValor;
             $user->save();
+
+            if (boolval($user->spotify_status)) {
+                $api = new SpotifyWebAPI\SpotifyWebAPI();
+                $api->setAccessToken($user->spotify_token);
+                $devices = $api->getMyDevices()->devices;
+
+                if ($devices != null && sizeof($devices) > 0) {
+                    $resultado = DB::select(DB::raw("
+                      SELECT itens_fila.spotify_uri FROM itens_fila 
+                      WHERE itens_fila.status = 'I'
+                      ORDER BY itens_fila.id
+                      LIMIT 1"));
+
+                    $api->play($devices[0]->id, [
+                        'uris' => [$resultado[0]->spotify_uri],
+                    ]);
+                } else {
+                    throw new \Exception("Nenhum dispositivo conectado.");
+                }
+            }
 
             $retorno['message'] = 'Operação realizada com sucesso.';
             $retorno['status'] = true;

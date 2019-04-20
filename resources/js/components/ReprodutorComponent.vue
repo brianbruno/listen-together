@@ -1,92 +1,80 @@
 <template>
     <div>
         <vue-topprogress ref="topProgress"></vue-topprogress>
-        <div class="card">
-            <div class="card-header">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="text-center">
+                    <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" />
+                    <h1 class="musicaEmReproducao">{{ musicaAtual }}</h1>
+                    <small class="autorMusicaReproducao">{{ musicaAtualAutor }}</small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 text-white">
                 <div class="row">
-                    <div class="col-md-8">
-                        Fila: default
+                    <div class="col-sm-12">
+                        <div v-if="proximasMusicas.length > 0">
+                            <small>next: {{ proximaMusicaAutor }}</small>
+                            <h2>{{ proximaMusica }}</h2>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="text-right">
-                            <button type="button" class="btn btn-danger btn-sm" v-on:click="alterarStatus()" v-if="status === true">
-                                Desativar
-                            </button>
-                            <button type="button" class="btn btn-success btn-sm" v-on:click="alterarStatus()" v-if="status === false">
-                                Ativar
-                            </button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table text-white">
+                                <tbody>
+                                <tr v-for="item in proximasMusicas">
+                                    <td> {{ item.name }} </td>
+                                    <td> {{ item.username }} </td>
+                                    <td v-on:click="removerMusicaFila(item.id)"> <i class="material-icons">close</i> </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="card-body">
-                <p>Música atual:</p>
-                <h3>{{ musicaAtual }}</h3>
-                <div v-if="proximasMusicas.length > 0">
-                    <hr>
-                    <p>Próxima</p>
-                    <h5>{{ proximaMusica }}</h5>
-                </div>
-
-                <button v-if="proximasMusicas.length > 0" type="button" class="btn btn-outline-dark btn-sm" v-on:click="mostrarProximasMusicas = !mostrarProximasMusicas">
-                    Ver próximas músicas
-                </button>
-                <br><br>
-                <div v-if="mostrarProximasMusicas">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th> música</th>
-                            <th> usuário</th>
-                            <th> remover</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="item in proximasMusicas">
-                            <td> {{ item.name }} </td>
-                            <td> {{ item.username }} </td>
-                            <td v-on:click="removerMusicaFila(item.id)"> <i class="material-icons">close</i> </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <h3>Buscar música</h3>
+        <div class="text-white">
+            <h3>Buscar música</h3>
 
-                <div class="input-group mb-3">
-                    <input v-model="buscaMusica" type="text" name="musica" class="form-control" placeholder="Digite a busca"
-                           v-on:keyup.enter="pesquisarMusica" aria-label="Busca">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" id="button-addon2" v-on:click="pesquisarMusica" >Buscar</button>
-                    </div>
-                </div>
-                <div>
-                    <table class="table" v-if="retornoMusicasBuscadas.length > 0">
-                        <thead>
-                        <tr>
-                            <th> </th>
-                            <th> música</th>
-                            <th> artista</th>
-                            <th class="text-center"> ação</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="item in retornoMusicasBuscadas">
-                            <td class="align-middle text-center">  <img :src="item.imageurl" :alt="item.name" /></td>
-                            <td class="align-middle"> {{ item.artistsname }}</td>
-                            <td class="align-middle"> {{ item.name }} </td>
-                            <td class="align-middle text-center" v-on:click="adicionarMusica(item.uri, item.desc)"><i class="material-icons">add</i></td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="input-group mb-3">
+                <input v-model="buscaMusica" type="text" name="musica" class="form-control" placeholder="Digite a busca"
+                       v-on:keyup.enter="pesquisarMusica" aria-label="Busca">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" id="button-addon2" v-on:click="pesquisarMusica" >Buscar</button>
                 </div>
             </div>
+            <div class="table-responsive">
+                <table class="table text-white" v-if="retornoMusicasBuscadas.length > 0">
+                    <thead>
+                    <tr>
+                        <th> </th>
+                        <th> música</th>
+                        <th> artista</th>
+                        <th class="text-center"> ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="item in retornoMusicasBuscadas">
+                        <td class="align-middle text-center">  <img :src="item.imageurl" :alt="item.name" /></td>
+                        <td class="align-middle"> {{ item.artistsname }}</td>
+                        <td class="align-middle"> {{ item.name }} </td>
+                        <td class="align-middle text-center" v-on:click="adicionarMusica(item.uri, item.desc)"><i class="material-icons">add</i></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <div class="text-center">
+                <button type="button" class="btn btn-danger btn-sm" v-on:click="alterarStatus()" v-if="status === true">
+                    Desativar
+                </button>
+                <button type="button" class="btn btn-success btn-sm" v-on:click="alterarStatus()" v-if="status === false">
+                    Ativar
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -105,7 +93,7 @@
                 .listen('MusicaAdicionada', (e) => {
                     self.getProximasMusicas();
                 }).listen('MusicaFinalizada', (e) => {
-                    self.getMusicaAtual();
+                self.getMusicaAtual();
                 self.getProximasMusicas();
             }).listen('MusicaIniciada', (e) => {
                 self.getMusicaAtual();
@@ -125,8 +113,10 @@
             return {
                 proximasMusicas: [],
                 proximaMusica: ' ',
+                proximaMusicaAutor: ' ',
+                imgMusicaAtual: ' ',
                 musicaAtual: ' ',
-                mostrarProximasMusicas: false,
+                musicaAtualAutor: ' ',
                 n_layout: 'topCenter',
                 status: 0,
                 total: 60,
@@ -149,7 +139,8 @@
                             self.proximasMusicas.push(musica);
                         });
                         if (musicas[0]) {
-                            self.proximaMusica = musicas[0].name + " por " + musicas[0].username;
+                            self.proximaMusica = musicas[0].name;
+                            self.proximaMusicaAutor = "por " + musicas[0].username;
                         } else {
                             self.proximaMusica = "Aleatória!";
                         }
@@ -168,6 +159,8 @@
                 axios.get('/api/getmusicaatual')
                     .then(res => {
                         self.musicaAtual = res.data.data;
+                        self.musicaAtualAutor = res.data.autor;
+                        self.imgMusicaAtual = res.data.image;
 
                         this.$refs.topProgress.done();
 
@@ -312,3 +305,13 @@
         }
     }
 </script>
+
+<style scoped>
+    .musicaEmReproducao {
+        font-family: 'Fredoka One', cursive;
+        color: white;
+    }
+    .autorMusicaReproducao {
+        color: white;
+    }
+</style>

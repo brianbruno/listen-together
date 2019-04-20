@@ -24,10 +24,16 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endif
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        .bg-home {
+            background-color: #1d2124;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-home">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

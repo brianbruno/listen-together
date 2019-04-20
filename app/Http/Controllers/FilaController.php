@@ -79,6 +79,7 @@ class FilaController extends Controller {
             $itemFila->id_user = Auth::user()->id;
             $itemFila->name = $track->artists[0]->name. " - " . $track->name;
             $itemFila->spotify_uri = $track->uri;
+            $itemFila->spotify_id = $track->id;
             $itemFila->ms_duration = $track->duration_ms;
             $itemFila->save();
 
@@ -188,15 +189,23 @@ class FilaController extends Controller {
         try {
 
             $resultado = DB::select(DB::raw("
-                  SELECT itens_fila.name name, users.id, filas.name queue_name, users.name username FROM itens_fila 
+                  SELECT itens_fila.name name, itens_fila.spotify_uri, users.id, filas.name queue_name, users.name username FROM itens_fila 
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
                   WHERE itens_fila.status = 'I'
                   ORDER BY itens_fila.id
                   LIMIT 1"));
 
+
             if (sizeof($resultado) > 0) {
-                $retorno['data'] = $resultado[0]->name . " por " . $resultado[0]->username;
+                $api = new SpotifyWebAPI\SpotifyWebAPI();
+                $api->setAccessToken(Auth::user()->spotify_token);
+
+                $track = $api->getTrack($resultado[0]->spotify_uri);
+
+                $retorno['data'] = $resultado[0]->name;
+                $retorno['autor'] = "por " . $resultado[0]->username;
+                $retorno['image'] = $track->album->images[1]->url;
             } else {
                 $retorno['data'] = 'Não foi possível recuperar a música atual.';
             }

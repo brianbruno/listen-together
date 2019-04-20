@@ -30,14 +30,21 @@ Route::get('/migrate', 'HostController@migrate');
 Route::middleware(['auth'])->group(function () {
 
     Route::prefix('api')->group(function () {
-        Route::get('/getproximasmusicas', 'FilaController@proximasMusicas');
-        Route::get('/getmusicaatual', 'FilaController@getMusicaAtual');
+        Route::get('/getproximasmusicas/{idfila}', 'FilaController@proximasMusicas');
+        Route::get('/getmusicaatual/{idfila}', 'FilaController@getMusicaAtual');
         Route::get('/trocarstatus', 'UserController@trocarStatus')->name('trocar-status');
         Route::get('/getuserdata', 'UserController@getUserData');
+        Route::get('/filas', 'FilaController@getFilas');
+        Route::post('/votar/{idfila}', 'FilaController@votarFila');
         Route::post('/buscarmusica', 'FilaController@buscarMusica');
         Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
         Route::post('/removermusica', 'FilaController@removerMusica');
+        Route::post('/trocarfila', 'UserController@trocarFila');
     });
+
+    Route::get('/criarfila', 'FilaController@getFilasUser')->name('filas-user');
+    Route::post('/salvarfila', 'FilaController@salvarFila')->name('salvar-fila');
+    Route::get('/apagarfila/{id}', 'FilaController@apagarFila')->name('apagar-fila');
 
 });
 

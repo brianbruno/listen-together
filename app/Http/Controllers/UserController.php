@@ -8,6 +8,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Fila;
+use App\ItensFila;
+use App\Jobs\ProximaMusica;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SpotifyWebAPI;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +63,45 @@ class UserController extends Controller {
                 } else {
                     throw new \Exception("Nenhum dispositivo conectado.");
                 }
+            }
+
+            $retorno['message'] = 'Operação realizada com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+
+    }
+
+    public function trocarFila(Request $request) {
+
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+            $id_fila = $request->fila;
+            $fila = Fila::find($id_fila);
+
+            $musicas = $fila->itens()->get();
+
+            if (sizeof($musicas) > 2) {
+                $user = Auth::user();
+                $user->id_fila = $id_fila;
+                $user->save();
+
+                $item = ItensFila::where('id_fila', $fila->id)->where('status', 'I')->first();
+                if ($item != null) {
+                    ProximaMusica::dispatchNow($user, $item->spotify_uri);
+                }
+
+            } else {
+                throw new \Exception("Grupo não possui músicas suficientes para subscrever.");
             }
 
             $retorno['message'] = 'Operação realizada com sucesso.';

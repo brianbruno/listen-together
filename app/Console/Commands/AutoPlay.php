@@ -2,8 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Fila;
 use App\Http\Controllers\AuthSpotifyController;
 use App\ItensFila;
+use App\Jobs\ProcessarFilas;
+use App\Jobs\ProximaMusica;
+use App\Jobs\TrocarCapaFila;
+use App\Listeners\ProximaFila;
 use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -46,63 +51,19 @@ class AutoPlay extends Command
 
         ItensFila::where('status', 'I')->update(['status' => 'F']);
 
-        while (true) {
-            $item = ItensFila::where('status', '=', 'N')->orderBy('id')->first();
+        $track = null;
 
-            if ($item == null) {
-                $item = ItensFila::orderBy(DB::raw('RAND()'))->first();
+        $filas = Fila::where('status', 'A')->get();
+
+        foreach ($filas as $fila) {
+            $itens = $fila->itens()->count();
+
+            if ($itens > 2) {
+                ProcessarFilas::dispatch($fila);
+            } else {
+                echo "A fila $fila->name não possui músicas suficientes. \n";
             }
 
-            $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
-
-            foreach ($users as $user) {
-                try {
-                    $api = new SpotifyWebAPI\SpotifyWebAPI();
-                    $api->setAccessToken($user->spotify_token);
-                    $devices = $api->getMyDevices()->devices;
-
-                    if ($devices != null && sizeof($devices) > 0) {
-                        $api->play($devices[0]->id, [
-                            'uris' => [$item->spotify_uri],
-                        ]);
-                    } else {
-                        throw new \Exception("Nenhum dispositivo conectado.");
-                    }
-
-                    AuthSpotifyController::refreshToken($user);
-                } catch (\Exception $e) {
-                    $this->line('');
-                    $this->error('User: ' . $user->id . ' - ' . $user->name);
-                    $this->error($e->getMessage());
-                    $this->line('');
-
-                    $user->spotify_status = 0;
-                    $user->save();
-                }
-            }
-            $item->status = "I";
-            $item->save();
-            $this->line('');
-            $this->info('Song started: '.$item->name);
-            event(new MusicaIniciada($item));
-
-            $tempoTotalSegundos = $item->ms_duration / 1000;
-            $bar = $this->output->createProgressBar($tempoTotalSegundos);
-
-            $tempo = 1;
-            $bar->start();
-
-            while ($tempo < $tempoTotalSegundos) {
-                sleep(1);
-                $tempo++;
-                $bar->advance();
-            }
-
-            $bar->finish();
-
-            $item->status = "F";
-            $item->save();
-            event(new MusicaFinalizada($item));
         }
 
     }

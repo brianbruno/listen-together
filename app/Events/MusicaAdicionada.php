@@ -26,4 +26,8 @@ class MusicaAdicionada implements ShouldBroadcastNow {
     public function broadcastWith() {
         return ['musica' => $this->item];
     }
+
+    public function getItem() {
+        return $this->item;
+    }
 }

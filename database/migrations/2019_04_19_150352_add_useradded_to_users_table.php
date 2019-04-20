@@ -29,6 +29,7 @@ class AddUseraddedToUsersTable extends Migration
     {
         Schema::table('itens_fila', function (Blueprint $table) {
             $table->dropColumn('id_user');
+            $table->dropForeign(['id_user']);
         });
     }
 }

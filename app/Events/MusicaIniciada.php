@@ -22,4 +22,8 @@ class MusicaIniciada implements ShouldBroadcastNow {
     public function broadcastOn() {
         return new Channel('filas');
     }
+
+    public function getItem() {
+        return $this->item;
+    }
 }

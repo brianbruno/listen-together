@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.Noty = require('noty');
+window.$ = window.jQuery = require('jquery');
 
 import vueTopprogress from 'vue-top-progress'
 
@@ -26,6 +27,7 @@ import vueTopprogress from 'vue-top-progress'
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('reprodutor', require('./components/ReprodutorComponent.vue').default);
 Vue.component('notificacao', require('./components/Notificacao.vue').default);
+Vue.component('filas', require('./components/Filas.vue').default);
 Vue.use(vueTopprogress);
 
 /**

@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <reprodutor></reprodutor>
+                {{--<reprodutor></reprodutor>--}}
+                <filas></filas>
             </div>
         </div>
     </div>

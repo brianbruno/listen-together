@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\MusicaIniciada;
+use App\Jobs\ProcessarFilas;
+use App\Listeners\FinalizarMusica;
+use App\Listeners\ProximaFila;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -17,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        MusicaIniciada::class => [
+            ProximaFila::class,
+            FinalizarMusica::class,
         ],
     ];
 

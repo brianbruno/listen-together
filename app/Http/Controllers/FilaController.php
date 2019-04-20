@@ -12,6 +12,7 @@ use App\Events\MusicaAdicionada;
 use App\Events\MusicaRemovida;
 use App\Fila;
 use App\ItensFila;
+use App\Jobs\ProcessarFilas;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -68,10 +69,10 @@ class FilaController extends Controller {
             $api->setAccessToken(Auth::user()->spotify_token);
             $track = $api->getTrack($request->uri);
 
-            $fila = Fila::first();
+            $fila = Fila::find($request->id_fila);
 
             if ($fila == null) {
-                throw new \Exception("Nenhuma fila cadastrada");
+                throw new \Exception("Fila não cadastrada");
             }
 
             $itemFila = new ItensFila();
@@ -84,6 +85,12 @@ class FilaController extends Controller {
             $itemFila->save();
 
             event(new MusicaAdicionada($itemFila));
+
+            $totalItens = $fila->itens()->count();
+
+            if ($totalItens == 3) {
+                ProcessarFilas::dispatch($fila);
+            }
 
             $retorno['message'] = 'Operação realizada com sucesso.';
             $retorno['status'] = true;
@@ -108,12 +115,19 @@ class FilaController extends Controller {
 
             $itemFila = ItensFila::find($request->id);
 
-            $itemFila->delete();
+            $fila = Fila::find($itemFila->id_fila);
 
-            event(new MusicaRemovida());
+            if ($fila->itens()->count-1 < 3) {
+                $retorno['message'] = 'Uma fila precisa ter pelo menos 3 músicas. Adicione para remover!!';
+            } else {
+                $itemFila->delete();
 
-            $retorno['message'] = 'Operação realizada com sucesso.';
-            $retorno['status'] = true;
+                event(new MusicaRemovida());
+
+                $retorno['message'] = 'Operação realizada com sucesso.';
+                $retorno['status'] = true;
+            }
+
         } catch(\Exception $e) {
             $retorno['message'] = $e->getMessage();
         }
@@ -147,8 +161,8 @@ class FilaController extends Controller {
 
         return redirect()->route('home');
     }
-    
-    public function proximasMusicas() {
+
+    public function proximasMusicas($idFila) {
 
         $retorno = [
             'message' => 'Não inicializado',
@@ -159,13 +173,14 @@ class FilaController extends Controller {
 
         try {
 
-            $results = DB::select(DB::raw("
+            $results = DB::select("
                   SELECT itens_fila.name name, itens_fila.id, filas.name queue_name, users.name username FROM itens_fila 
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
                   WHERE itens_fila.status = 'N'
+                  AND filas.id = :fila
                   ORDER BY itens_fila.id
-                  LIMIT 50"));
+                  LIMIT 5", ['fila' => $idFila]);
 
             $retorno['data'] = $results;
             $retorno['message'] = 'Dados recuperados com sucesso.';
@@ -177,7 +192,7 @@ class FilaController extends Controller {
         return response()->json($retorno, 200);
     }
 
-    public function getMusicaAtual() {
+    public function getMusicaAtual($idFila) {
 
         $retorno = [
             'message' => 'Não inicializado',
@@ -188,13 +203,14 @@ class FilaController extends Controller {
 
         try {
 
-            $resultado = DB::select(DB::raw("
+            $resultado = DB::select("
                   SELECT itens_fila.name name, itens_fila.spotify_uri, users.id, filas.name queue_name, users.name username FROM itens_fila 
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
                   WHERE itens_fila.status = 'I'
+                  AND filas.id = :fila
                   ORDER BY itens_fila.id
-                  LIMIT 1"));
+                  LIMIT 1", ['fila' => $idFila]);
 
 
             if (sizeof($resultado) > 0) {
@@ -217,5 +233,116 @@ class FilaController extends Controller {
 
         return response()->json($retorno, 200);
 
+    }
+
+    public function getFilas() {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+        try {
+
+            $results = DB::select(DB::raw("
+                  SELECT filas.id, filas.name, filas.avaliacao, filas.capa_fila, filas.descricao, users.name username
+                  FROM filas
+                  LEFT JOIN users ON users.id = filas.id_user
+                  WHERE filas.status = 'A'
+                  ORDER BY votos DESC"));
+
+            $retorno['data'] = $results;
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+    }
+
+    public function getFilasUser() {
+
+        $user = Auth::user();
+
+        $filas = $user->filas()->get();
+
+        return view('app.criarfila', ['filas' => $filas]);
+
+    }
+
+    public function salvarFila(\Illuminate\Http\Request $request) {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+        try {
+            $user = Auth::user();
+            $fila = new Fila();
+
+            $fila->id_user = $user->id;
+            $fila->name = $request->name;
+            $fila->descricao = $request->descricao;
+            $fila->status = 'A';
+            $fila->capa_fila = 'https://i.scdn.co/image/e450eb7b7b9616a40d01e23d9ef6d6f52714f912';
+            $fila->save();
+
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+            var_dump($e->getMessage());die;
+        }
+
+        return redirect()->route('filas-user');
+    }
+
+    public function apagarFila($id){
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+        try {
+
+            ItensFila::where('id_fila', $id)->delete();
+            $fila = Fila::find($id);
+            $fila->delete();
+
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+            var_dump($e->getMessage());die;
+        }
+
+        return redirect()->route('filas-user');
+    }
+
+    public function votarFila($idfila) {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+
+            $fila = Fila::find($idfila);
+
+            $fila->votos = $fila->votos+1;
+            $fila->save();
+
+            $retorno['message'] = 'Operação realizada com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
     }
 }

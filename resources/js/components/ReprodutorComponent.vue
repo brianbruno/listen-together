@@ -2,9 +2,9 @@
     <div>
         <vue-topprogress ref="topProgress"></vue-topprogress>
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+            <div class="col-md-12" v-bind:class="{ 'col-lg-6': proximasMusicas.length > 0, 'col-lg-12': proximasMusicas.length === 0 }">
                 <div class="text-center">
-                    <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" />
+                    <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" class="img-fluid"/>
                     <h1 class="musicaEmReproducao">{{ musicaAtual }}</h1>
                     <small class="autorMusicaReproducao">{{ musicaAtualAutor }}</small>
                 </div>
@@ -68,11 +68,11 @@
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-danger btn-sm" v-on:click="alterarStatus()" v-if="status === true">
-                    Desativar
+                <button type="button" class="btn btn-outline-danger btn-sm" v-on:click="alterarStatus()" v-if="status === true">
+                    desativar
                 </button>
-                <button type="button" class="btn btn-success btn-sm" v-on:click="alterarStatus()" v-if="status === false">
-                    Ativar
+                <button type="button" class="btn btn-outline-success btn-sm" v-on:click="alterarStatus()" v-if="status === false">
+                    ativar
                 </button>
             </div>
         </div>
@@ -84,11 +84,15 @@
 
     export default {
         mounted() {
-            this.getProximasMusicas();
-            this.getMusicaAtual();
-            this.getUserData();
-
             const self = this;
+
+            self.$root.$on('atualizar-componente', (id) => {
+                self.idFilaAtual = id;
+                self.retornoMusicasBuscadas = [];
+                self.buscaMusica = "";
+                self.atualizarComponentes();
+            });
+
             Echo.channel('filas')
                 .listen('MusicaAdicionada', (e) => {
                     self.getProximasMusicas();
@@ -122,13 +126,22 @@
                 total: 60,
                 buscaMusica: "",
                 retornoMusicasBuscadas: [],
+                idFilaAtual: this.idFila,
             }
         },
+        props: {
+            idFila: Number,
+        },
         methods: {
+            atualizarComponentes() {
+                this.getProximasMusicas();
+                this.getMusicaAtual();
+                this.getUserData();
+            },
             getProximasMusicas() {
                 const self = this;
                 this.$refs.topProgress.start();
-                axios.get('/api/getproximasmusicas')
+                axios.get('/api/getproximasmusicas/'+self.idFilaAtual)
                     .then(res => {
                         const musicas = res.data.data;
 
@@ -156,7 +169,7 @@
             getMusicaAtual() {
                 const self = this;
                 this.$refs.topProgress.start();
-                axios.get('/api/getmusicaatual')
+                axios.get('/api/getmusicaatual/'+self.idFilaAtual)
                     .then(res => {
                         self.musicaAtual = res.data.data;
                         self.musicaAtualAutor = res.data.autor;
@@ -259,7 +272,7 @@
 
                 self.$refs.topProgress.start();
 
-                axios.post('/api/adicionarmusica', {uri: uri, desc: desc})
+                axios.post('/api/adicionarmusica', {uri: uri, desc: desc, id_fila: self.idFilaAtual})
                     .then(res => {
 
                         self.$refs.topProgress.done();

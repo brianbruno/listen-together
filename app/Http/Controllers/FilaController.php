@@ -197,6 +197,7 @@ class FilaController extends Controller {
             'data'    => [],
             'autor'   => '',
             'image'   => '',
+            'id_fila' => '',
         ];
 
 
@@ -225,6 +226,7 @@ class FilaController extends Controller {
                 $retorno['data'] = $resultado[0]->name;
                 $retorno['autor'] = "por " . $resultado[0]->username;
                 $retorno['image'] = $track->album->images[1]->url;
+                $retorno['id_fila'] = $idFila;
                 $retorno['message'] = 'Dados recuperados com sucesso.';
                 $retorno['status'] = true;
             } else {

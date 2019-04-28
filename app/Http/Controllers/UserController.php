@@ -99,6 +99,7 @@ class UserController extends Controller {
                 if ($item != null) {
                     ProximaMusica::dispatchNow($user, $item->spotify_uri);
                     $user->spotify_status = '1';
+                    $user->save();
                 }
 
             } else {

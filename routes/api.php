@@ -33,9 +33,11 @@ Route::group([
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
 
-        Route::get('/getmusicaatual/{idfila}', 'FilaController@getMusicaAtual');
+        Route::get('/getmusicaatual/{idfila?}', 'FilaController@getMusicaAtual');
         Route::post('/buscarmusica', 'FilaController@buscarMusica');
         Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
+        Route::get('/filas', 'FilaController@getFilas');
+        Route::post('/trocarfila', 'UserController@trocarFila');
     });
 });
 

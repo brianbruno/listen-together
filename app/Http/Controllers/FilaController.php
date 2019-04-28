@@ -189,7 +189,7 @@ class FilaController extends Controller {
         return response()->json($retorno, 200);
     }
 
-    public function getMusicaAtual($idFila) {
+    public function getMusicaAtual($idFila = null) {
 
         $retorno = [
             'message' => 'Não inicializado',
@@ -201,6 +201,10 @@ class FilaController extends Controller {
 
 
         try {
+
+            if (empty($idFila)) {
+                $idFila = Auth::user()->id_fila;
+            }
 
             $resultado = DB::select("
                   SELECT itens_fila.name name, itens_fila.spotify_uri, users.id, filas.name queue_name, users.name username FROM itens_fila 
@@ -221,11 +225,11 @@ class FilaController extends Controller {
                 $retorno['data'] = $resultado[0]->name;
                 $retorno['autor'] = "por " . $resultado[0]->username;
                 $retorno['image'] = $track->album->images[1]->url;
+                $retorno['message'] = 'Dados recuperados com sucesso.';
+                $retorno['status'] = true;
             } else {
-                $retorno['data'] = 'Não foi possível recuperar a música atual.';
+                $retorno['message'] = 'Não foi possível recuperar a música atual.';
             }
-            $retorno['message'] = 'Dados recuperados com sucesso.';
-            $retorno['status'] = true;
         } catch(\Exception $e) {
             $retorno['message'] = $e->getMessage();
         }

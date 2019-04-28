@@ -8,22 +8,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use SpotifyWebAPI;
 
 class AuthSpotifyController extends Controller {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
-    public function autorizar() {
+    public function autorizar($id_user) {
         $url = env('APP_URL');
 
         $session = new SpotifyWebAPI\Session(
@@ -40,6 +32,9 @@ class AuthSpotifyController extends Controller {
                 'user-read-private'
             ],
         ];
+
+
+        Storage::disk('local')->put('id_user', $id_user);
 
         header('Location: ' . $session->getAuthorizeUrl($options));
         die();
@@ -60,12 +55,14 @@ class AuthSpotifyController extends Controller {
         $accessToken = $session->getAccessToken();
         $refreshToken = $session->getRefreshToken();
 
-        $user = Auth::user();
+        $id_user = Storage::get('id_user');
+        $user = User::find($id_user);
         $user->spotify_token = $accessToken;
         $user->spotify_refreshtoken = $refreshToken;
         $user->save();
 
-        return redirect()->route('home');
+        echo "<script>window.close();</script>";
+//        return redirect()->route('home');
     }
 
     public static function refreshToken($user = null) {

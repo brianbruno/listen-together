@@ -49,7 +49,7 @@ class HomeController extends Controller
 
             return view('home', ['track' => $currentTrack, 'itensFila' => $itensFila]);
         } catch (SpotifyWebAPI\SpotifyWebAPIException $e) {
-            return redirect('authspotify');
+            return redirect()->route('authspotify', ['id_user' => Auth::user()->id]);
         }
 
     }

@@ -33,6 +33,9 @@ class AuthSpotifyController extends Controller {
             ],
         ];
 
+        if (empty($id_user)) {
+            $id_user = Auth::user()->id;
+        }
 
         Storage::disk('local')->put('id_user', $id_user);
 

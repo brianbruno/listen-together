@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="601a2acb-3cff-426e-9517-c3aa4d6a3671" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthSpotifyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthSpotifyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="601a2acb-3cff-426e-9517-c3aa4d6a3671" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +57,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthSpotifyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
+            <state relative-caret-position="285">
               <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
               <folding>
                 <element signature="e#122#135#0#PHP" expanded="true" />
@@ -454,12 +451,12 @@
       <workItem from="1556067221644" duration="598000" />
       <workItem from="1556070370462" duration="2027000" />
       <workItem from="1556231529236" duration="1687000" />
-      <workItem from="1556367764629" duration="13973000" />
+      <workItem from="1556367764629" duration="14588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79920000" />
+    <option name="totallyTimeSpent" value="80535000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -965,7 +962,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthSpotifyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
+        <state relative-caret-position="285">
           <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
           <folding>
             <element signature="e#122#135#0#PHP" expanded="true" />

@@ -21,10 +21,6 @@ use SpotifyWebAPI;
 
 class FilaController extends Controller {
 
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     public function buscarMusica(\Illuminate\Http\Request $request) {
 
         $retorno = [
@@ -199,6 +195,8 @@ class FilaController extends Controller {
             'message' => 'Não inicializado',
             'status'  => false,
             'data'    => [],
+            'autor'   => '',
+            'image'   => '',
         ];
 
 
@@ -374,4 +372,5 @@ class FilaController extends Controller {
 
         return response()->json($retorno, 200);
     }
+
 }

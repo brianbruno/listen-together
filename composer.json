@@ -13,6 +13,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "jwilsson/spotify-web-api-php": "^2.6",
         "laravel/framework": "5.8.*",
+        "laravel/passport": "^7.2",
         "laravel/tinker": "^1.0",
         "pusher/pusher-php-server": "~3.0"
     },

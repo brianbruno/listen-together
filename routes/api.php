@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +17,30 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('signup', 'AuthController@signup');
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+
+        Route::get('/getmusicaatual/{idfila}', 'FilaController@getMusicaAtual');
+        Route::post('/buscarmusica', 'FilaController@buscarMusica');
+        Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
+    });
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function() {
+//    Route::get('/getmusicaatual/{idfila}', 'FilaController@getMusicaAtual');
 });

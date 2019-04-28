@@ -1,2 +1,4 @@
 php artisan queue:work --tries=1
 php artisan queue:work --queue=system --tries=1
+
+php artisan passport:install

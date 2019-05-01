@@ -14,12 +14,17 @@ use App\Fila;
 use App\ItensFila;
 use App\Jobs\FinalizarMusica;
 use App\Jobs\ProcessarFilas;
+use App\Musica;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use SpotifyWebAPI;
 
 class FilaController extends Controller {
+
+    public function index($idFila) {
+        return view('app.fila', ['idFila' => $idFila]);
+    }
 
     public function buscarMusica(\Illuminate\Http\Request $request) {
 
@@ -72,13 +77,22 @@ class FilaController extends Controller {
                 throw new \Exception("Fila não cadastrada");
             }
 
+            $musica = Musica::where('spotify_uri', $track->uri)->first();
+
+            if (empty($musica)) {
+                $musica = new Musica();
+                $musica->name = $track->artists[0]->name. " - " . $track->name;
+                $musica->spotify_uri = $track->uri;
+                $musica->spotify_id = $track->id;
+                $musica->ms_duration = $track->duration_ms;
+                $musica->save();
+            }
+
             $itemFila = new ItensFila();
             $itemFila->id_fila = $fila->id;
             $itemFila->id_user = Auth::user()->id;
-            $itemFila->name = $track->artists[0]->name. " - " . $track->name;
-            $itemFila->spotify_uri = $track->uri;
-            $itemFila->spotify_id = $track->id;
-            $itemFila->ms_duration = $track->duration_ms;
+            $itemFila->id_musica = $musica->id;
+
             $itemFila->save();
 
             event(new MusicaAdicionada($itemFila));
@@ -171,9 +185,10 @@ class FilaController extends Controller {
         try {
 
             $results = DB::select("
-                  SELECT itens_fila.name name, itens_fila.id, filas.name queue_name, users.name username FROM itens_fila 
+                  SELECT musicas.name name, itens_fila.id, filas.name queue_name, users.name username FROM itens_fila 
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
+                  LEFT JOIN musicas ON musicas.id = itens_fila.id_musica
                   WHERE itens_fila.status = 'N'
                   AND filas.id = :fila
                   ORDER BY itens_fila.id
@@ -208,9 +223,10 @@ class FilaController extends Controller {
             }
 
             $resultado = DB::select("
-                  SELECT itens_fila.name name, itens_fila.spotify_uri, users.id, filas.name queue_name, users.name username FROM itens_fila 
+                  SELECT musicas.name name, musicas.spotify_uri, users.id, filas.name queue_name, users.name username FROM itens_fila 
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
+                  LEFT JOIN musicas ON musicas.id = itens_fila.id_musica
                   WHERE itens_fila.status = 'I'
                   AND filas.id = :fila
                   ORDER BY itens_fila.id
@@ -254,8 +270,9 @@ class FilaController extends Controller {
                   FROM filas
                   LEFT JOIN users ON users.id = filas.id_user
                   WHERE filas.status = 'A'
+                  AND filas.public = 1
                   ORDER BY votos DESC
-                  LIMIT 50"));
+                  LIMIT 26"));
 
             $retorno['data'] = $results;
             $retorno['message'] = 'Dados recuperados com sucesso.';

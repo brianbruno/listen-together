@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/proximamusica', 'FilaController@proximaMusica');
     });
 
+    Route::get('/configuracoes', 'ConfiguracaoController@index')->name('configuracoes');
+    Route::get('/fila/{idFila}', 'FilaController@index');
+    Route::get('/configuracoes/copiarplaylists', 'ConfiguracaoController@copiarPlaylists')->name('configuracoes.copiarplaylists');
     Route::get('/criarfila', 'FilaController@getFilasUser')->name('filas-user');
     Route::post('/salvarfila', 'FilaController@salvarFila')->name('salvar-fila');
     Route::get('/apagarfila/{id}', 'FilaController@apagarFila')->name('apagar-fila');

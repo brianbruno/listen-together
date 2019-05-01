@@ -98,13 +98,19 @@
 
             Echo.channel('filas')
                 .listen('MusicaAdicionada', (e) => {
-                    self.getProximasMusicas();
+                    if (e.item.id_fila === self.idFilaAtual) {
+                        self.getProximasMusicas();
+                    }
                 }).listen('MusicaFinalizada', (e) => {
-                self.getMusicaAtual();
-                self.getProximasMusicas();
+                if (e.item.id_fila === self.idFilaAtual) {
+                    self.getMusicaAtual();
+                    self.getProximasMusicas();
+                }
             }).listen('MusicaIniciada', (e) => {
-                self.getMusicaAtual();
-                self.getProximasMusicas();
+                if (e.item.id_fila === self.idFilaAtual) {
+                    self.getMusicaAtual();
+                    self.getProximasMusicas();
+                }
             }).listen('MusicaRemovida', (e) => {
                 self.getProximasMusicas();
             });

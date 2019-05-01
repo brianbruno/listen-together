@@ -11,6 +11,7 @@ namespace App\Listeners;
 
 use App\Events\MusicaFinalizada;
 use App\Events\MusicaIniciada;
+use App\Musica;
 
 class FinalizarMusica {
 
@@ -20,7 +21,8 @@ class FinalizarMusica {
 
     public function handle(MusicaIniciada $event) {
         $item = $event->getItem();
-        $tempoTotalSegundos = $item->ms_duration / 1000;
+        $musica = Musica::find($item->id_musica);
+        $tempoTotalSegundos = $musica->ms_duration / 1000;
         \App\Jobs\FinalizarMusica::dispatch($item)->delay(now()->addSeconds($tempoTotalSegundos));
     }
 

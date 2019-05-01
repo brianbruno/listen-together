@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Fila;
 use App\ItensFila;
+use App\Musica;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -16,15 +17,15 @@ class TrocarCapaFila implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $fila, $musica;
+    protected $fila, $itemFila;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Fila $fila, ItensFila $musica) {
+    public function __construct(Fila $fila, ItensFila $itemFila) {
         $this->fila = $fila;
-        $this->musica = $musica;
+        $this->itemFila = $itemFila;
     }
 
     /**
@@ -34,24 +35,28 @@ class TrocarCapaFila implements ShouldQueue
      */
     public function handle() {
         $fila = $this->fila;
-        $musica = $this->musica;
+        $itemFila = $this->itemFila;
 
-        $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
+        if ($fila->capa_dinamica) {
+            $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
 
-        foreach ($users as $user) {
-            try {
-                $api = new SpotifyWebAPI\SpotifyWebAPI();
-                $api->setAccessToken($user->spotify_token);
+            foreach ($users as $user) {
+                try {
+                    $api = new SpotifyWebAPI\SpotifyWebAPI();
+                    $api->setAccessToken($user->spotify_token);
 
-                $track = $api->getTrack($musica->spotify_uri);
-                $urlImage = $track->album->images[0]->url;
+                    $musica = Musica::find($itemFila->id_musica);
 
-                $fila->capa_fila = $urlImage;
-                $fila->save();
+                    $track = $api->getTrack($musica->spotify_uri);
+                    $urlImage = $track->album->images[0]->url;
 
-                break;
-            } catch (\Exception $e) {
-                //
+                    $fila->capa_fila = $urlImage;
+                    $fila->save();
+
+                    break;
+                } catch (\Exception $e) {
+                    //
+                }
             }
         }
 

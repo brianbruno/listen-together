@@ -2117,13 +2117,19 @@ __webpack_require__.r(__webpack_exports__);
       self.atualizarComponentes();
     });
     Echo.channel('filas').listen('MusicaAdicionada', function (e) {
-      self.getProximasMusicas();
+      if (e.item.id_fila === self.idFilaAtual) {
+        self.getProximasMusicas();
+      }
     }).listen('MusicaFinalizada', function (e) {
-      self.getMusicaAtual();
-      self.getProximasMusicas();
+      if (e.item.id_fila === self.idFilaAtual) {
+        self.getMusicaAtual();
+        self.getProximasMusicas();
+      }
     }).listen('MusicaIniciada', function (e) {
-      self.getMusicaAtual();
-      self.getProximasMusicas();
+      if (e.item.id_fila === self.idFilaAtual) {
+        self.getMusicaAtual();
+        self.getProximasMusicas();
+      }
     }).listen('MusicaRemovida', function (e) {
       self.getProximasMusicas();
     });

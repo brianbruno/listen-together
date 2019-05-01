@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Fila;
 use App\ItensFila;
 use App\Jobs\ProximaMusica;
+use App\Musica;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SpotifyWebAPI;
@@ -97,7 +98,8 @@ class UserController extends Controller {
 
                 $item = ItensFila::where('id_fila', $fila->id)->where('status', 'I')->first();
                 if ($item != null) {
-                    ProximaMusica::dispatchNow($user, $item->spotify_uri);
+                    $musica = Musica::find($item->id_musica);
+                    ProximaMusica::dispatchNow($user, $musica->spotify_uri);
                     $user->spotify_status = '1';
                     $user->save();
                 }

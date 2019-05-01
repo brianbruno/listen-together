@@ -12,6 +12,7 @@ namespace App\Listeners;
 use App\Events\MusicaIniciada;
 use App\Fila;
 use App\Jobs\ProcessarFilas;
+use App\Musica;
 
 class ProximaFila {
 
@@ -27,7 +28,8 @@ class ProximaFila {
     public function handle(MusicaIniciada $event) {
         $item = $event->getItem();
         $fila = Fila::find($item->id_fila);
-        $tempoTotalSegundos = $item->ms_duration / 1000;
+        $musica = Musica::find($item->id_musica);
+        $tempoTotalSegundos = $musica->ms_duration / 1000;
         ProcessarFilas::dispatch($fila)->delay(now()->addSeconds($tempoTotalSegundos));
     }
 

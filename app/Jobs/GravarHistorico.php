@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\HistoricoMusicas;
+use App\Musica;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -38,6 +39,14 @@ class GravarHistorico implements ShouldQueue
         $historico = new HistoricoMusicas();
         $historico->id_user = $user->id;
         $historico->uri = $uri;
+        $historico->data = date('Y-m-d H:i:s');
+
+        $musica = Musica::where('spotify_uri', $uri)->first();
+
+        if (!empty($musica)) {
+            $historico->id_musica = $musica->id;
+        }
+
         $historico->save();
     }
 }

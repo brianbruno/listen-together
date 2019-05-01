@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Events\MusicaIniciada;
 use App\Fila;
+use App\Musica;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -42,7 +43,8 @@ class ProcessarFilas implements ShouldQueue
         event(new MusicaIniciada($item));
 
         foreach ($users as $user) {
-            ProximaMusica::dispatchNow($user, $item->spotify_uri);
+            $musica = Musica::find($item->id_musica);
+            ProximaMusica::dispatchNow($user, $musica->spotify_uri);
         }
         $item->status = "I";
         $item->save();

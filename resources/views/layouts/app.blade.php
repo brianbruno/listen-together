@@ -107,6 +107,7 @@
         <div class="text-right">
             <a href="{{ route('home') }}" class="btn btn-outline-info"><i class="fas fa-home"></i></a>
             <a href="{{ route('filas-user') }}" class="btn btn-outline-light"><i class="fas fa-plus"></i></a>
+            <a href="{{ route('configuracoes') }}" class="btn btn-outline-warning"><i class="fas fa-cog"></i></a>
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                class="btn btn-outline-danger">
                 <i class="fas fa-sign-out-alt"></i>

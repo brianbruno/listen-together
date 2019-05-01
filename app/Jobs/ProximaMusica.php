@@ -49,10 +49,10 @@ class ProximaMusica implements ShouldQueue {
                 dispatch((new GravarHistorico($user, $this->uri))->onQueue('system'));
 
             } else {
-                $user->spotify_status = 0;
-                $user->save();
+//                $user->spotify_status = 0;
+//                $user->save();
 
-                throw new \Exception("Nenhum dispositivo conectado.");
+                throw new \Exception("Nenhum dispositivo conectado. ".$user->name);
             }
 
             dispatch((new AtualizarTokenSpotify($user))->onQueue('system'));

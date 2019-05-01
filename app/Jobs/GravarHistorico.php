@@ -35,10 +35,11 @@ class GravarHistorico implements ShouldQueue
     public function handle() {
         $user = $this->user;
         $uri = $this->uri;
+        $musica = Musica::where('spotify_uri', $uri)->first();
 
         $historico = new HistoricoMusicas();
         $historico->id_user = $user->id;
-        $historico->uri = $uri;
+        $historico->id_musica = $musica->id;
         $historico->data = date('Y-m-d H:i:s');
 
         $musica = Musica::where('spotify_uri', $uri)->first();

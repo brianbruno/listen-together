@@ -42,4 +42,26 @@ class User extends Authenticatable
     public function filas() {
         return $this->hasMany('App\Fila', 'id_user', 'id');
     }
+
+    public function historicos() {
+        return $this->hasMany('App\HistoricoMusicas', 'id_user', 'id');
+    }
+
+    private function afinidade($texto) {
+        $total = $this->historicos()->whereHas("musica", function($q) use ($texto){
+            $q->where('name', 'like', '%' . $texto . '%');
+        })->count();
+
+        return $total;
+    }
+
+    public function afinidadeArtista($nomeArtista) {
+        return $this->afinidade($nomeArtista);
+
+    }
+
+    public function afinidadeMusica($nomeMusica) {
+        return $this->afinidade($nomeMusica);
+    }
+
 }

@@ -17,4 +17,12 @@ class HistoricoMusicas extends Model {
         return $this->belongsTo('App\User', 'id_user');
     }
 
+    public function musica() {
+        return $this->belongsTo('App\Musica', 'id_musica');
+    }
+
+    public function getMusicNameAttribute() {
+        $musica = $this->musica()->first();
+        return $musica->name;
+    }
 }

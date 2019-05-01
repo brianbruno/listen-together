@@ -73,24 +73,10 @@ class CopiarPlaylists implements ShouldQueue
                 $musica = Musica::where('spotify_uri', $track->uri)->first();
 
                 if (empty($musica)) {
-                    $musica = new Musica();
-                    $musica->name = $track->artists[0]->name. " - " . $track->name;
-                    $musica->spotify_uri = $track->uri;
-                    $musica->spotify_id = $track->id;
-                    $musica->ms_duration = $track->duration_ms;
-                    $musica->save();
+                    $musica = Musica::cadastrarMusica($track);
                 }
 
-                $itemFila = ItensFila::where('id_fila', $fila->id)->where('id_musica', $musica->id)->first();
-
-                if (empty($itemFila)) {
-                    $itemFila = new ItensFila();
-                    $itemFila->id_fila = $fila->id;
-                    $itemFila->id_user = $user->id;
-                    $itemFila->id_musica = $musica->id;
-                    $itemFila->save();
-                }
-
+                ItensFila::adicionarMusica($fila->id, $user->id, $musica->id);
             }
 
             $totalItens = $fila->itens()->count();

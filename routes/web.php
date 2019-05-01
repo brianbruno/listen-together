@@ -50,6 +50,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/salvarfila', 'FilaController@salvarFila')->name('salvar-fila');
     Route::get('/apagarfila/{id}', 'FilaController@apagarFila')->name('apagar-fila');
 
+    Route::namespace('Integration')->group(function () {
+        Route::get('twitter/login', 'TwitterController@signIn')->name('twitter.login');
+        Route::get('twitter/callback', 'TwitterController@callback')->name('twitter.callback');
+        Route::get('twitter/error', 'TwitterController@error')->name('twitter.error');
+        Route::get('twitter/logout', 'TwitterController@logout')->name('twitter.logout');
+    });
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

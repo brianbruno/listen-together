@@ -37,13 +37,11 @@ class FilaController extends Controller {
 
         try {
 
+            if ($request->busca) {
+                throw new \Exception("Frase de busca vazia.");
+            }
 
-            $api = new SpotifyWebAPI\SpotifyWebAPI();
-            $api->setAccessToken(Auth::user()->spotify_token);
-
-            $results = $api->search($request->busca, 'track');
-
-            $musicas = $results->tracks->items;
+            $musicas = Musica::buscarMusicasSpotify($request->busca);
 
             $retorno['data'] = $musicas;
             $retorno['message'] = 'Dados recuperados com sucesso.';
@@ -66,27 +64,13 @@ class FilaController extends Controller {
 
 
         try {
-
-            $api = new SpotifyWebAPI\SpotifyWebAPI();
-            $api->setAccessToken(Auth::user()->spotify_token);
-            $track = $api->getTrack($request->uri);
-
             $fila = Fila::find($request->id_fila);
 
             if ($fila == null) {
                 throw new \Exception("Fila não cadastrada");
             }
 
-            $musica = Musica::where('spotify_uri', $track->uri)->first();
-
-            if (empty($musica)) {
-                $musica = new Musica();
-                $musica->name = $track->artists[0]->name. " - " . $track->name;
-                $musica->spotify_uri = $track->uri;
-                $musica->spotify_id = $track->id;
-                $musica->ms_duration = $track->duration_ms;
-                $musica->save();
-            }
+            $musica = Musica::encontrarUriMusica($request->uri);
 
             $itemFila = new ItensFila();
             $itemFila->id_fila = $fila->id;

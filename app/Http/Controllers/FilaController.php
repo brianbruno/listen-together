@@ -255,8 +255,8 @@ class FilaController extends Controller {
                   LEFT JOIN users ON users.id = filas.id_user
                   WHERE filas.status = 'A'
                   AND filas.public = 1
-                  ORDER BY votos DESC
-                  LIMIT 26"));
+                  ORDER BY votos DESC, rand()
+                  LIMIT 50"));
 
             $retorno['data'] = $results;
             $retorno['message'] = 'Dados recuperados com sucesso.';

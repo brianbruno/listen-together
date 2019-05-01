@@ -47,7 +47,7 @@ class BuscarMusicasTweets extends Command
             $logs = [];
             $fileName = 'tweets'.$user->id.'.txt';
             $exists = Storage::disk('local')->exists($fileName);
-            $idFila = 55;
+            $idFila = 1;
 
             try {
                 if ($exists) {

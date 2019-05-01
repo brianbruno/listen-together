@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\Integration\TwitterController;
 use App\Http\Controllers\Integration\VagalumeController;
 use App\ItensFila;
 use App\Musica;
@@ -24,8 +25,6 @@ class BuscarMusicasTweets extends Command
      * @var string
      */
     protected $description = 'Command description';
-
-    const HASH_TWEET = '#ouvirjuntos';
     /**
      * Create a new command instance.
      *
@@ -45,68 +44,89 @@ class BuscarMusicasTweets extends Command
         $users = User::all();
 
         foreach ($users as $user) {
+            $logs = [];
             $fileName = 'tweets'.$user->id.'.txt';
             $exists = Storage::disk('local')->exists($fileName);
-            $idFila = 1;
+            $idFila = 55;
 
-            if ($exists) {
-                $contents = Storage::get($fileName);
-                $tweets = explode('([EOT])', $contents);
+            try {
+                if ($exists) {
+                    $contents = Storage::get($fileName);
+                    $tweets = explode('([EOT])', $contents);
 
-                foreach ($tweets as $tweet) {
-                    $texto = str_replace(self::HASH_TWEET, '', $tweet);
-                    $texto = preg_replace( "/\r|\n/", "", $texto);
-                    $this->line("Analisando o tweet: ".$texto);
-                    $results = VagalumeController::buscarTrecho($texto);
+                    foreach ($tweets as $tweet) {
+                        $texto = TwitterController::getOnlyTextTweet($tweet);
+                        $this->salvarLog("Analisando o tweet: " . $texto, $logs);
+                        $results = VagalumeController::buscarTrecho($texto);
 
-                    foreach($results as $result) {
-                        $nomeArtista = $result->band;
-                        $nomeMusica = $result->title;
-                        echo $nomeArtista.' - '.$nomeMusica.PHP_EOL;
+                        foreach ($results as $result) {
+                            $nomeArtista = $result->band;
+                            $nomeMusica = $result->title;
+                            $this->salvarLog("$nomeArtista - $nomeMusica", $logs, false);
 
-                        $afinidadeArtista = $user->afinidadeArtista($nomeArtista);
-                        $afinidadeMusica = $user->afinidadeMusica($nomeMusica);
+                            $afinidadeArtista = $user->afinidadeArtista($nomeArtista);
+                            $afinidadeMusica = $user->afinidadeMusica($nomeMusica);
 
-                        if (($afinidadeArtista + $afinidadeMusica) > 5 and ($afinidadeArtista > 15 or $afinidadeMusica > 10)) {
-                            $musicasSpotify = Musica::buscarMusicasSpotify($nomeArtista.' '.$nomeMusica, $user);
+                            if (($afinidadeArtista + $afinidadeMusica) > 5 and ($afinidadeArtista > 10 or $afinidadeMusica > 5)) {
+                                $musicasSpotify = Musica::buscarMusicasSpotify($nomeArtista . ' ' . $nomeMusica, $user);
 
-                            foreach ($musicasSpotify as $musica) {
-                                $contemArtistaPrincipal = false;
-                                $contemNomeMusica = false;
+                                foreach ($musicasSpotify as $musica) {
+                                    $contemArtistaPrincipal = false;
+                                    $contemNomeMusica = false;
 
-                                foreach ($musica->artists as $artist) {
-                                    if ($artist->name == $nomeArtista) {
-                                        $contemArtistaPrincipal = true;
+                                    foreach ($musica->artists as $artist) {
+                                        if ($artist->name == $nomeArtista) {
+                                            $contemArtistaPrincipal = true;
+                                        }
+                                    }
+
+                                    if (strpos($musica->name, $nomeMusica) != false) {
+                                        $contemNomeMusica = true;
+                                    }
+
+                                    if ($contemArtistaPrincipal or $contemNomeMusica) {
+                                        $musicaSistema = Musica::encontrarUriMusica($musica->uri, $user);
+                                        ItensFila::adicionarMusica($idFila, $user->id, $musicaSistema->id);
+                                        $this->salvarLog('Música adicionada! '.$musicaSistema->name, $logs, true);
+                                        break;
+                                    } else {
+                                        $this->salvarLog("$nomeArtista - $nomeMusica", $logs, true);
+                                        $this->salvarLog('Nao foi a musica procurada', $logs, true);
                                     }
                                 }
 
-                                if (strpos($musica->name, $nomeMusica) != false) {
-                                    $contemNomeMusica = true;
+                                if (sizeof($musicasSpotify) == 0) {
+                                    $this->salvarLog("$nomeArtista - $nomeMusica", $logs, true);
+                                    $this->salvarLog('Musica nao encontrada no spotify', $logs, true);
                                 }
 
-                                if ($contemArtistaPrincipal or $contemNomeMusica) {
-                                    $musicaSistema = Musica::encontrarUriMusica($musica->uri);
-                                    ItensFila::adicionarMusica($idFila, $user->id, $musicaSistema->id);
-                                    $this->line('Música adicionada!');
-                                    break;
-                                } else {
-                                    $this->line('Nao foi a musica procurada');
-                                }
+                            } else {
+                                $this->salvarLog("Cliente nao possui afinidade com essa musica. AA: $afinidadeArtista AM: $afinidadeMusica", $logs, false);
                             }
-
-                            if (sizeof($musicasSpotify) == 0) {
-                                $this->line('Musica nao encontrada no spotify');
-                            }
-
-                        } else {
-                            $this->line("Cliente nao possui afinidade com essa musica. AA: $afinidadeArtista AM: $afinidadeMusica");
                         }
+
+                        $this->salvarLog("-------------------------------------------------------------------------", $logs, false);
                     }
                 }
+            } catch (\Exception $e) {
+                $this->salvarLog("Erro inesperado. ".$e->getMessage(), $logs, true);
             }
+
+            $this->salvarLogArquivo($fileName, $logs);
         }
         
-        
         return;   
+    }
+
+    private function salvarLog($texto, &$log, $exibir = true) {
+        if ($exibir) $this->line($texto);
+
+        $log[] = $texto;
+    }
+
+    private function salvarLogArquivo($userFileName, $logs) {
+        if (sizeof($logs) > 0) {
+            Storage::disk('local')->put("log_".$userFileName, implode(PHP_EOL, $logs));
+        }
     }
 }

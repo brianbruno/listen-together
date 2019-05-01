@@ -20,11 +20,16 @@ class VagalumeController {
             $texto = ltrim($texto);
             $texto = rtrim($texto);
             $texto = str_replace(' ', '%20', $texto);
-            $client = new Client();
-            $request = $client->get('https://api.vagalume.com.br/search.excerpt?q='.$texto.'&limit=25&apikey='.$vagalumeApiKey);
-            $results = json_decode($request->getBody()->getContents());
-            $results = $results->response->docs;
 
+            try {
+                $client = new Client();
+                $request = $client->get('https://api.vagalume.com.br/search.excerpt?q='.$texto.'&limit=25&apikey='.$vagalumeApiKey);
+                $results = json_decode($request->getBody()->getContents());
+                $results = $results->response->docs;
+            } catch (\GuzzleHttp\Exception\ServerException $e) {
+                $results = [];
+                echo "Erro ao conectar com a API Vagalume\n";
+            }
         }
 
         return $results;

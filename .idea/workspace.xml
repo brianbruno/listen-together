@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601a2acb-3cff-426e-9517-c3aa4d6a3671" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/HistoricoMusicas.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/HistoricoMusicas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FilaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ItensFila.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ItensFila.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CopiarPlaylists.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CopiarPlaylists.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/GravarHistorico.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/GravarHistorico.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Musica.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Musica.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/configuracoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/configuracoes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,40 +51,85 @@
         <entry file="file://$PROJECT_DIR$/app/ItensFila.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-15">
-              <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Musica.php">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state relative-caret-position="246">
+              <caret line="69" column="126" selection-start-line="69" selection-start-column="126" selection-end-line="69" selection-end-column="126" />
               <folding>
-                <element signature="e#23#62#0#PHP" expanded="true" />
+                <element signature="e#40#95#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/app/tweets1.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="181" column="7" lean-forward="true" selection-start-line="181" selection-start-column="7" selection-end-line="181" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+              <folding>
+                <element signature="e#134#170#0#PHP" expanded="true" />
+                <element signature="e#359#1212#0#PHP" />
+                <element signature="e#1218#3630#0#PHP" />
+                <element signature="e#3728#3893#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php">
+        <entry file="file://$PROJECT_DIR$/storage/app/log_tweets1.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="57" column="64" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+            <state relative-caret-position="185">
+              <caret line="1598" column="20" selection-start-line="1598" selection-start-column="20" selection-end-line="1598" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="20" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="920">
+              <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="82" />
               <folding>
-                <element signature="e#40#96#0#PHP" expanded="true" />
+                <element signature="e#40#53#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/User.php">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/RemoverUriHistorico.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="60" column="5" lean-forward="true" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+            <state relative-caret-position="985">
+              <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
+              <folding>
+                <element signature="e#40#53#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,12 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>carousel-control-next-icon</find>
-      <find>background</find>
-      <find>autoco</find>
-      <find>request</find>
-      <find>gettrack</find>
-      <find>gettra</find>
       <find>album</find>
       <find>post</find>
       <find>proximasMusicas</find>
@@ -132,8 +160,14 @@
       <find>adicionarmus</find>
       <find>getfilas</find>
       <find>index</find>
-      <find>encontrarUriMusica</find>
       <find>buscarMusicasSpotify</find>
+      <find>analisando</find>
+      <find>encontrarUriMusica</find>
+      <find>quando for</find>
+      <find>Quando for beijar alguém</find>
+      <find>musica</find>
+      <find>quando for</find>
+      <find>$userFileName</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -148,7 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Console/Commands/AutoPlay.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_20_173143_add_votes_to_filas_table.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Filas.vue" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_20_215756_create_historico_musicas_table.php" />
@@ -184,13 +217,10 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/app/configuracoes.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_01_092358_add_twitter_token_to_users_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php" />
         <option value="$PROJECT_DIR$/storage/app/1.txt" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AnalisarTweetsUser.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php" />
         <option value="$PROJECT_DIR$/.env.example" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php" />
         <option value="$PROJECT_DIR$/app/HistoricoMusicas.php" />
         <option value="$PROJECT_DIR$/storage/app/tweets1.txt" />
         <option value="$PROJECT_DIR$/app/User.php" />
@@ -198,6 +228,10 @@
         <option value="$PROJECT_DIR$/app/ItensFila.php" />
         <option value="$PROJECT_DIR$/app/Jobs/CopiarPlaylists.php" />
         <option value="$PROJECT_DIR$/app/Musica.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php" />
+        <option value="$PROJECT_DIR$/storage/app/log_tweets1.txt" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php" />
       </list>
     </option>
@@ -306,7 +340,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -335,6 +369,34 @@
               <item name="listen-together" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Console" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Console" type="462c0819:PsiDirectoryNode" />
+              <item name="Commands" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Integration" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
@@ -414,12 +476,12 @@
       <workItem from="1556231529236" duration="1687000" />
       <workItem from="1556367764629" duration="18277000" />
       <workItem from="1556670666389" duration="14748000" />
-      <workItem from="1556708220363" duration="15354000" />
+      <workItem from="1556708220363" duration="18993000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114326000" />
+    <option name="totallyTimeSpent" value="117965000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -434,7 +496,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21255673" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21255673" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -449,7 +511,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" x="1366" y="82" width="1366" height="705" id="Terminal" order="11" type="WINDOWED" visible="true" weight="0.49918166" />
+      <window_info anchor="bottom" x="1366" y="82" width="1366" height="705" id="Terminal" order="11" type="WINDOWED" visible="true" weight="0.49918166" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -482,19 +544,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Events/MusicaAdicionada.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="52" />
-          <folding>
-            <element signature="e#30#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/MusicaRemovida.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/AutoPlay.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-510" />
@@ -672,16 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/RemoverUriHistorico.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Jobs/GravarHistorico.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -790,40 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="38" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#134#170#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/tweets1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/HistoricoMusicas.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -858,10 +863,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/RemoverUriHistorico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="985">
+          <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
+          <folding>
+            <element signature="e#40#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="82" />
+          <folding>
+            <element signature="e#40#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="20" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/app/log_tweets2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Musica.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        <state relative-caret-position="177">
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
           <folding>
             <element signature="e#23#62#0#PHP" expanded="true" />
           </folding>
@@ -871,17 +906,44 @@
     <entry file="file://$PROJECT_DIR$/app/ItensFila.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
-          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+          <folding>
+            <element signature="e#134#170#0#PHP" expanded="true" />
+            <element signature="e#359#1212#0#PHP" />
+            <element signature="e#1218#3630#0#PHP" />
+            <element signature="e#3728#3893#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="57" column="64" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+        <state relative-caret-position="246">
+          <caret line="69" column="126" selection-start-line="69" selection-start-column="126" selection-end-line="69" selection-end-column="126" />
           <folding>
-            <element signature="e#40#96#0#PHP" expanded="true" />
+            <element signature="e#40#95#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/app/tweets1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="181" column="7" lean-forward="true" selection-start-line="181" selection-start-column="7" selection-end-line="181" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/app/log_tweets1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="1598" column="20" selection-start-line="1598" selection-start-column="20" selection-end-line="1598" selection-end-column="73" />
         </state>
       </provider>
     </entry>

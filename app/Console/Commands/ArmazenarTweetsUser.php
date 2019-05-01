@@ -54,13 +54,14 @@ class ArmazenarTweetsUser extends Command
 
             Twitter::reconfig($request_token);
 
-            $userTimeLine = Twitter::getUserTimeline(['screen_name' => $user->twitter_screen_name, 'count' => 250]);
+            $userTimeLine = Twitter::getUserTimeline(['screen_name' => $user->twitter_screen_name, 'count' => 200]);
             $tweets = [];
 
             foreach ($userTimeLine as $item) {
                 if (!$item->retweeted) {
                     $texto = $item->text;
-                    $contemHashTag = strpos($texto, self::HASH_TWEET);
+//                    $contemHashTag = strpos($texto, self::HASH_TWEET);
+                    $contemHashTag = true;
 
                     if (strlen($texto) > 5 and $contemHashTag !== false) {
                         $tweets[] = $texto;

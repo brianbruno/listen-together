@@ -64,8 +64,8 @@ class AuthSpotifyController extends Controller {
         $user->spotify_refreshtoken = $refreshToken;
         $user->save();
 
-        echo "<script>window.close();</script>";
-//        return redirect()->route('home');
+//        echo "<script>window.close();</script>";
+        return redirect()->route('home');
     }
 
     public static function refreshToken($user = null) {

@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/authspotify/{id_user?}', 'AuthSpotifyController@autorizar')->name('autorizar-spotify');
+Route::get('/authspotify/{id_user?}', 'AuthSpotifyController@autorizar')->name('authspotify');
 
 Route::get('/gravartoken', 'AuthSpotifyController@gravarCodigo');
 

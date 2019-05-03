@@ -123,5 +123,7 @@
         @yield('content')
     </main>
 </div>
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+@yield('script')
 </body>
 </html>

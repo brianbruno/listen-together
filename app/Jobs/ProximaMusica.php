@@ -52,12 +52,12 @@ class ProximaMusica implements ShouldQueue {
 //                $user->spotify_status = 0;
 //                $user->save();
 
-                throw new \Exception("Nenhum dispositivo conectado. ".$user->name);
+                throw new \Exception("Nenhum dispositivo conectado. ".$user->name."\n");
             }
 
             dispatch((new AtualizarTokenSpotify($user))->onQueue('system'));
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            echo $e->getMessage()."\n";
         }
 
     }

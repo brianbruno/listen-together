@@ -61,7 +61,7 @@
 
             setInterval(function () {
                 self.getFilas();
-            }, 10000);
+            }, 1000 * 120);
 
             this.getFilas()
         },
@@ -119,10 +119,10 @@
                         this.$refs.topProgress.done();
 
                     }).catch(err => {
+                    console.log(err);
                     self.$refs.topProgress.fail();
                     this.$refs.topProgress.done();
                     self.$root.$emit('notificar', 'Ocorreu um erro ao alterar a fila. ', 'error');
-                    console.log(err);
                 })
             },
             abrirModal(id) {

@@ -28,6 +28,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('reprodutor', require('./components/ReprodutorComponent.vue').default);
 Vue.component('notificacao', require('./components/Notificacao.vue').default);
 Vue.component('filas', require('./components/Filas.vue').default);
+Vue.component('spotify-player', require('./components/SpotifyPlayer.vue').default);
 Vue.use(vueTopprogress);
 
 /**

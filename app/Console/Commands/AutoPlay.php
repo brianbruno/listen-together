@@ -51,20 +51,14 @@ class AutoPlay extends Command
 
         ItensFila::where('status', 'I')->update(['status' => 'F']);
 
-        $track = null;
-
-        $filas = Fila::where('status', 'A')->get();
+        $filas = Fila::where('status', 'A')->whereHas("itens", function($q){
+            $q->havingRaw('COUNT(*) > 2');
+        })->get();
 
         foreach ($filas as $fila) {
-            $itens = $fila->itens()->count();
-
-            if ($itens > 2) {
-                ProcessarFilas::dispatch($fila);
-            } else {
-                echo "A fila $fila->name não possui músicas suficientes. \n";
-            }
-
+            ProcessarFilas::dispatch($fila);
         }
 
+        return;
     }
 }

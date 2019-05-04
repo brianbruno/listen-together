@@ -15,6 +15,7 @@ use App\ItensFila;
 use App\Jobs\FinalizarMusica;
 use App\Jobs\ProcessarFilas;
 use App\Musica;
+use App\MusicaLikes;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -196,37 +197,51 @@ class FilaController extends Controller {
             'data'    => [],
             'autor'   => '',
             'image'   => '',
+            'plays'   => 0,
             'id_fila' => '',
+            'nome_fila' => '',
+            'liked'    => true,
+            'likes'    => 0,
+            'id'       => ''
         ];
 
 
         try {
+
+            $user = Auth::user();
 
             if (empty($idFila)) {
                 $idFila = Auth::user()->id_fila;
             }
 
             $resultado = DB::select("
-                  SELECT musicas.name name, musicas.spotify_uri, users.id, filas.name queue_name, users.name username FROM itens_fila 
+                  SELECT musicas.name name, musicas.spotify_uri, musicas.spotify_image, users.id, filas.name queue_name, users.name username,
+                         COUNT(historico_musicas.id) plays, musicas.id id_musica FROM itens_fila
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
                   LEFT JOIN musicas ON musicas.id = itens_fila.id_musica
+                  LEFT JOIN historico_musicas ON musicas.id = historico_musicas.id_musica
                   WHERE itens_fila.status = 'I'
                   AND filas.id = :fila
+                  GROUP BY musicas.name, musicas.spotify_uri, musicas.spotify_image, users.id, filas.name, users.name, musicas.id
                   ORDER BY itens_fila.id
                   LIMIT 1", ['fila' => $idFila]);
 
 
             if (sizeof($resultado) > 0) {
-                $api = new SpotifyWebAPI\SpotifyWebAPI();
-                $api->setAccessToken(Auth::user()->spotify_token);
 
-                $track = $api->getTrack($resultado[0]->spotify_uri);
+                $likesMusica = MusicaLikes::where('id_musica', $resultado[0]->id_musica)->count();
+                $likesUserMusica = MusicaLikes::where('id_user', $user->id)->where('id_musica', $resultado[0]->id_musica)->count();
 
+                $retorno['liked'] = boolval($likesUserMusica);
+                $retorno['likes'] = $likesMusica;
                 $retorno['data'] = $resultado[0]->name;
                 $retorno['autor'] = "por " . $resultado[0]->username;
-                $retorno['image'] = $track->album->images[1]->url;
+                $retorno['image'] = $resultado[0]->spotify_image;
                 $retorno['id_fila'] = $idFila;
+                $retorno['nome_fila'] = $resultado[0]->queue_name;
+                $retorno['id'] = $resultado[0]->id_musica;
+                $retorno['plays'] = $resultado[0]->plays;
                 $retorno['message'] = 'Dados recuperados com sucesso.';
                 $retorno['status'] = true;
             } else {
@@ -253,8 +268,7 @@ class FilaController extends Controller {
                   SELECT filas.id, filas.name, filas.avaliacao, filas.capa_fila, filas.descricao, users.name username
                   FROM filas
                   LEFT JOIN users ON users.id = filas.id_user
-                  WHERE filas.status = 'A'
-                  AND filas.public = 1
+                  WHERE filas.public = 1
                   ORDER BY votos DESC, rand()
                   LIMIT 50"));
 

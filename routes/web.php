@@ -32,11 +32,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('api')->group(function () {
         Route::get('/getproximasmusicas/{idfila}', 'FilaController@proximasMusicas');
-        Route::get('/getmusicaatual/{idfila}', 'FilaController@getMusicaAtual');
+        Route::get('/getmusicaatual/{idfila?}', 'FilaController@getMusicaAtual');
         Route::get('/trocarstatus', 'UserController@trocarStatus')->name('trocar-status');
         Route::get('/getuserdata', 'UserController@getUserData');
         Route::get('/filas', 'FilaController@getFilas');
         Route::post('/votar/{idfila}', 'FilaController@votarFila');
+        Route::post('/like/{idmusica}', 'MusicaLikeController@likeMusica');
         Route::post('/buscarmusica', 'FilaController@buscarMusica');
         Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
         Route::post('/removermusica', 'FilaController@removerMusica');

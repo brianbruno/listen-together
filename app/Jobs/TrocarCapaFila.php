@@ -37,35 +37,39 @@ class TrocarCapaFila implements ShouldQueue
         $fila = $this->fila;
         $itemFila = $this->itemFila;
 
-        if ($fila->capa_dinamica) {
-            $musica = Musica::find($itemFila->id_musica);
-            if (empty($musica->spotify_image)) {
-                $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
 
-                foreach ($users as $user) {
-                    try {
-                        $api = new SpotifyWebAPI\SpotifyWebAPI();
-                        $api->setAccessToken($user->spotify_token);
+        $musica = Musica::find($itemFila->id_musica);
+        if (empty($musica->spotify_image)) {
+            $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
 
-                        $track = $api->getTrack($musica->spotify_uri);
-                        $urlImage = $track->album->images[0]->url;
+            foreach ($users as $user) {
+                try {
+                    $api = new SpotifyWebAPI\SpotifyWebAPI();
+                    $api->setAccessToken($user->spotify_token);
 
-                        $musica->spotify_image = $urlImage;
-                        $musica->save();
+                    $track = $api->getTrack($musica->spotify_uri);
+                    $urlImage = $track->album->images[0]->url;
+
+                    $musica->spotify_image = $urlImage;
+                    $musica->save();
+
+                    if ($fila->capa_dinamica) {
                         $fila->capa_fila = $urlImage;
                         $fila->save();
-
-                        break;
-                    } catch (\Exception $e) {
-                        //
                     }
+
+                    break;
+                } catch (\Exception $e) {
+                    //
                 }
-            } else {
+            }
+        } else {
+            if ($fila->capa_dinamica) {
                 $fila->capa_fila = $musica->spotify_image;
                 $fila->save();
             }
-
         }
+
 
 
     }

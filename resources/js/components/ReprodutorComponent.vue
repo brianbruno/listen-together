@@ -2,7 +2,7 @@
     <div>
         <vue-topprogress ref="topProgress"></vue-topprogress>
         <div class="row">
-            <div class="col-md-12" v-bind:class="{ 'col-lg-6': proximasMusicas.length > 0, 'col-lg-12': proximasMusicas.length === 0 }">
+            <div class="col-md-12"  v-if="statusMusicaAtual" v-bind:class="{ 'col-lg-6': proximasMusicas.length > 0, 'col-lg-12': proximasMusicas.length === 0 }">
                 <div class="text-center">
                     <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" class="img-fluid"/>
                     <h1 class="musicaEmReproducao">{{ musicaAtual }}</h1>
@@ -10,7 +10,7 @@
                     <!--<a href="#" @click="pularMusica()"><p><small>pular</small></p></a>-->
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 text-white">
+            <div v-bind:class="{ 'col-lg-6 col-md-12': statusMusicaAtual, 'col-lg-12': !statusMusicaAtual }" class="text-white">
                 <div class="row">
                     <div class="col-sm-12">
                         <div v-if="proximasMusicas.length > 0">
@@ -136,6 +136,7 @@
                 buscaMusica: "",
                 retornoMusicasBuscadas: [],
                 idFilaAtual: this.idFila,
+                statusMusicaAtual: false,
             }
         },
         props: {
@@ -183,6 +184,7 @@
                         self.musicaAtual = res.data.data;
                         self.musicaAtualAutor = res.data.autor;
                         self.imgMusicaAtual = res.data.image;
+                        self.statusMusicaAtual = res.data.status;
 
                         this.$refs.topProgress.done();
 

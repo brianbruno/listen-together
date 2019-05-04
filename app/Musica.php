@@ -68,4 +68,8 @@ class Musica extends Model {
 
         return $musica;
     }
+
+    public function likes() {
+        return $this->hasMany('App\MusicaLikes', 'id_musica', 'id');
+    }
 }

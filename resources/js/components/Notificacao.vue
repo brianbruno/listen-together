@@ -12,7 +12,6 @@
             this.$root.$on('notificar', (mensagem, tipo, layout) => {
                 self.notificar(mensagem, tipo, layout);
             });
-
         },
         props: {
             mensagem: String,

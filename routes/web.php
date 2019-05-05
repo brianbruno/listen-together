@@ -18,6 +18,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
 Route::get('/authspotify/{id_user?}', 'AuthSpotifyController@autorizar')->name('autorizar-spotify');
 Route::get('/authspotify/{id_user?}', 'AuthSpotifyController@autorizar')->name('authspotify');

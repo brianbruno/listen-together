@@ -9,14 +9,15 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use SpotifyWebAPI;
 
 class AuthSpotifyController extends Controller {
 
-    public function autorizar($id_user) {
-        $url = env('APP_URL');
+    public function autorizar(Request $request, $id_user = null) {
+        $url = env('APP_URL', 'http://localhost:8000');
 
         $session = new SpotifyWebAPI\Session(
             '936b7eace3ed43059613cd0ac9a18ec2',
@@ -37,14 +38,15 @@ class AuthSpotifyController extends Controller {
             $id_user = Auth::user()->id;
         }
 
+//        $request->session()->put('id_user', $id_user);
         Storage::disk('local')->put('id_user', $id_user);
 
         header('Location: ' . $session->getAuthorizeUrl($options));
         die();
     }
 
-    public function gravarCodigo() {
-        $url = env('APP_URL');
+    public function gravarCodigo(Request $request) {
+        $url = env('APP_URL', 'http://localhost:8000');
 
         $session = new SpotifyWebAPI\Session(
             '936b7eace3ed43059613cd0ac9a18ec2',
@@ -59,6 +61,7 @@ class AuthSpotifyController extends Controller {
         $refreshToken = $session->getRefreshToken();
 
         $id_user = Storage::get('id_user');
+//        $id_user = $request->session()->get('key');
         $user = User::find($id_user);
         $user->spotify_token = $accessToken;
         $user->spotify_refreshtoken = $refreshToken;

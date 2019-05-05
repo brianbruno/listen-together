@@ -31,7 +31,7 @@ class HomeController extends Controller
             return view('home', ['user' => Auth::user()]);
 
         } catch (\Exception $e) {
-            return redirect()->route('authspotify', ['id_user' => Auth::user()->id]);
+            return redirect()->route('authspotify');
         }
 
     }

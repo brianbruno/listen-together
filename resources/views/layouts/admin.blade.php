@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name', 'Ouvir Juntos') }}</title>
 
-    @if(env('APACHE', true))
+    @if(env('APACHE', false))
         <script src="{{ asset('public/js/app.js') }}" defer></script>
     @else
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,7 +18,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
-    @if(env('APACHE', true))
+    @if(env('APACHE', false))
         <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     @else
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">

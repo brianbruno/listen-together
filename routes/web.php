@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trocarstatus', 'UserController@trocarStatus')->name('trocar-status');
         Route::get('/getuserdata', 'UserController@getUserData');
         Route::get('/filas', 'FilaController@getFilas');
+        Route::post('/buscarfilas', 'FilaController@buscarFila');
         Route::post('/votar/{idfila}', 'FilaController@votarFila');
         Route::post('/like/{idmusica}', 'MusicaLikeController@likeMusica');
         Route::post('/buscarmusica', 'FilaController@buscarMusica');
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/removermusica', 'FilaController@removerMusica');
         Route::post('/trocarfila', 'UserController@trocarFila');
         Route::post('/proximamusica', 'FilaController@proximaMusica');
+        Route::post('/alterarparametros', 'ConfiguracaoController@alterarParametros')->name('alterar-parametros');
     });
 
     Route::get('/configuracoes', 'ConfiguracaoController@index')->name('configuracoes');

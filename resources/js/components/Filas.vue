@@ -2,15 +2,17 @@
     <div class="container">
         <vue-topprogress ref="topProgress"></vue-topprogress>
 
+        <input class="form-control transparent-input" type='text' name='busca' @change="buscarFilas" placeholder="Buscar fila..."  autocomplete="off" v-model="stringBuscaFila">
+
         <div class="row justify-content-center">
             <div class="col-md-6" v-for="fila in filas">
                 <div>
                     <figure class="snip0051">
                         <img :src="fila.capa_fila" alt="sample1"/>
                         <div class="icons">
-                            <a href="#" @click="trocarFila(fila.id)"><i class="fas fa-headphones-alt"></i></a>
-                            <a href="#" @click="votarFila(fila.id)"><i class="far fa-thumbs-up"></i></a>
-                            <a href="#" @click="abrirModal(fila.id)" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-info"></i></a>
+                            <a @click="trocarFila(fila.id)"><i class="fas fa-headphones-alt"></i></a>
+                            <a @click="votarFila(fila.id)"><i class="far fa-thumbs-up"></i></a>
+                            <a @click="abrirModal(fila.id)" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-info"></i></a>
                         </div>
                         <figcaption>
                             <h2>{{ fila.username }} <span>{{ fila.name }}</span></h2>
@@ -57,12 +59,6 @@
                 }
             );
 
-            const self = this;
-
-            setInterval(function () {
-                self.getFilas();
-            }, 1000 * 120);
-
             this.getFilas()
         },
         components: {
@@ -72,6 +68,8 @@
             return {
                 filas: [],
                 idFilaClick: 0,
+                stringBuscaFila: '',
+                ultimaConsulta: 0,
             }
         },
         methods: {
@@ -150,6 +148,43 @@
                     console.log(err);
                 })
             },
+            buscarFilas() {
+                const self = this;
+
+                if (self.stringBuscaFila) {
+                    self.$refs.topProgress.start();
+                    axios.post('/api/buscarfilas', { busca: self.stringBuscaFila })
+                        .then(res => {
+
+                            if (res.data.status) {
+                                const filas = res.data.data;
+
+                                self.filas = [];
+
+                                filas.forEach((fila) => {
+                                    self.filas.push(fila);
+                                });
+
+                                this.$refs.topProgress.done();
+
+                            } else {
+                                self.$refs.topProgress.fail();
+                                self.$root.$emit('notificar', res.data.message, 'error');
+                            }
+
+
+                        }).catch(err => {
+                        self.$refs.topProgress.fail();
+                        this.$refs.topProgress.done();
+                        self.$root.$emit('notificar', 'Ocorreu um erro ao buscar as filas. ', 'error');
+                        console.log(err);
+                    })
+                } else {
+                    self.getFilas();
+                }
+
+
+            }
         }
     }
 </script>
@@ -294,5 +329,25 @@
     /* Demo purposes only */
     body {
         background-color: #212121;
+    }
+
+    input.transparent-input {
+        border:none !important
+    }
+
+    .transparent-input {
+        background-color: rgba(0, 0, 0, 0);
+        border:none;
+        color: white;
+        font-size: x-large;
+    }
+
+    input.transparent-input{
+        background-color:rgba(0,0,0,0) !important;
+        border:none !important;
+    }
+
+    input:focus, input{
+        outline: none !important;
     }
 </style>

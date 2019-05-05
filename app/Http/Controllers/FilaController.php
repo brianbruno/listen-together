@@ -38,7 +38,7 @@ class FilaController extends Controller {
 
         try {
 
-            if ($request->busca) {
+            if (empty($request->busca)) {
                 throw new \Exception("Frase de busca vazia.");
             }
 
@@ -386,6 +386,41 @@ class FilaController extends Controller {
             }
 
             $retorno['message'] = 'Operação realizada com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+    }
+
+    public function buscarFila(\Illuminate\Http\Request $request) {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+        try {
+
+            $busca = $request->busca;
+
+            if (empty($busca)) {
+//                throw new \Exception("Busca inválida.");
+                $busca = '';
+            }
+
+            $results = DB::select(DB::raw("
+                  SELECT filas.id, filas.name, filas.avaliacao, filas.capa_fila, filas.descricao, users.name username
+                  FROM filas
+                  LEFT JOIN users ON users.id = filas.id_user
+                  WHERE filas.public = 1
+                  AND (filas.id LIKE '%".$busca."%' OR filas.name LIKE '%".$busca."%' OR filas.descricao LIKE '%".$busca."%' OR users.name LIKE '%".$busca."%')
+                  ORDER BY filas.name
+                  LIMIT 100"));
+
+            $retorno['data'] = $results;
+            $retorno['message'] = 'Dados recuperados com sucesso.';
             $retorno['status'] = true;
         } catch(\Exception $e) {
             $retorno['message'] = $e->getMessage();

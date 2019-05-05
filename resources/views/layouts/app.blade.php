@@ -114,7 +114,9 @@
         @yield('content')
     </main>
 </div>
+@if(!empty($user) && $user->utliza_player_site)
 <script src="https://sdk.scdn.co/spotify-player.js"></script>
+@endif
 @yield('script')
 </body>
 </html>

@@ -32,7 +32,6 @@ class ProcessarFilas implements ShouldQueue
 
         if ($fila->status == 'A') {
             echo "Processando a fila " . $fila->name . " \n";
-
             $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->where('id_fila', '=', $fila->id)->get();
 
             if (sizeof($users) > 0) {
@@ -60,7 +59,6 @@ class ProcessarFilas implements ShouldQueue
                 $fila->save();
                 echo "Fila parada! $fila->name \n";
             }
-
         }
     }
 }

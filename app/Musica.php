@@ -25,7 +25,7 @@ class Musica extends Model {
             $results = $api->search($textoBusca, 'track');
             $musicas = $results->tracks->items;
         } catch (\Exception $e) {
-            echo "Eroo! ".$e->getMessage();
+            echo "Erro! ".$e->getMessage();
         }
 
         return $musicas;

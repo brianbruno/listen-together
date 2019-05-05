@@ -16,15 +16,16 @@ class ProximaMusica implements ShouldQueue {
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $user, $uri;
+    protected $user, $uri, $positionMs;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, $uri) {
+    public function __construct(User $user, $uri, $positionMs = null) {
         $this->user = $user;
         $this->uri = $uri;
+        $this->positionMs = $positionMs;
     }
 
     /**
@@ -37,6 +38,7 @@ class ProximaMusica implements ShouldQueue {
         $user = $this->user;
 
         try {
+
             $api = new SpotifyWebAPI\SpotifyWebAPI();
             $api->setAccessToken($user->spotify_token);
             $devices = $api->getMyDevices()->devices;
@@ -45,6 +47,12 @@ class ProximaMusica implements ShouldQueue {
                 $api->play($devices[0]->id, [
                     'uris' => [$this->uri],
                 ]);
+
+                if (!empty($this->positionMs)) {
+                    $api->seek([
+                        'position_ms' => $this->positionMs,
+                    ]);
+                }
 
                 dispatch((new GravarHistorico($user, $this->uri))->onQueue('system'));
 

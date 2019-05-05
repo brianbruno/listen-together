@@ -4,10 +4,23 @@
         <div class="row">
             <div class="col-md-12"  v-if="statusMusicaAtual" v-bind:class="{ 'col-lg-6': proximasMusicas.length > 0, 'col-lg-12': proximasMusicas.length === 0 }">
                 <div class="text-center">
-                    <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" class="img-fluid"/>
+                    <img v-if="imgMusicaAtual !== ' '" :src="imgMusicaAtual" :alt="musicaAtual" class="img-fluid item-image"/>
                     <h1 class="musicaEmReproducao">{{ musicaAtual }}</h1>
-                    <small class="autorMusicaReproducao">{{ musicaAtualAutor }}</small>
+                    <small class="autorMusicaReproducao text-muted">{{ musicaAtualAutor }}</small>
                     <!--<a href="#" @click="pularMusica()"><p><small>pular</small></p></a>-->
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <small class="text-muted cat">
+                            <span class="d-block p-0"><i class="fas fa-user-alt text-secondary"></i>  Por {{ objMusicaAtual.autor }}</span>
+                            <span class="d-block p-0"><i class="fas fa-play text-secondary"></i>  {{ objMusicaAtual.plays }} plays</span>
+                            <span class="d-block p-0"><i class="fas fa-heart text-secondary"></i>  {{ objMusicaAtual.likes }} favs</span>
+                        </small>
+                    </div>
+                    <div class="col-md-4">
+                        <span v-if="!objMusicaAtual.liked" v-on:click="likeMusica" class="float-right align-middle d-block p-0"><i class="fas fa-heart fa-3x text-secondary"></i></span>
+                        <span v-if="objMusicaAtual.liked" v-on:click="likeMusica" class="float-right align-middle d-block p-0"><i class="fas fa-heart fa-3x text-danger"></i></span>
+                    </div>
                 </div>
             </div>
             <div v-bind:class="{ 'col-lg-6 col-md-12': statusMusicaAtual, 'col-lg-12': !statusMusicaAtual }" class="text-white">
@@ -27,7 +40,7 @@
                                 <tr v-for="item in proximasMusicas">
                                     <td> {{ item.name }} </td>
                                     <td> {{ item.username }} </td>
-                                    <td v-on:click="removerMusicaFila(item.id)"> <i class="material-icons">close</i> </td>
+                                    <td v-on:click="removerMusicaFila(item.id)" class="align-middle"><button type="button" class="btn btn-link"><small><i class="material-icons text-danger">close</i></small></button></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -46,7 +59,7 @@
                 <input v-model="buscaMusica" type="text" name="musica" class="form-control input" placeholder="Digite a busca"
                        v-on:keyup.enter="pesquisarMusica" autocomplete="off" aria-label="Busca">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" id="button-addon2" v-on:click="pesquisarMusica" >Buscar</button>
+                    <button class="btn btn-outline-light" id="button-addon2" v-on:click="pesquisarMusica" >Buscar</button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -54,8 +67,8 @@
                     <thead>
                     <tr>
                         <th> </th>
-                        <th> música</th>
                         <th> artista</th>
+                        <th> música</th>
                         <th class="text-center"> ação</th>
                     </tr>
                     </thead>
@@ -64,19 +77,10 @@
                         <td class="align-middle text-center">  <img :src="item.imageurl" :alt="item.name" /></td>
                         <td class="align-middle"> {{ item.artistsname }}</td>
                         <td class="align-middle"> {{ item.name }} </td>
-                        <td class="align-middle text-center" v-on:click="adicionarMusica(item.uri, item.desc)"><i class="material-icons">add</i></td>
+                        <td class="align-middle text-center" v-on:click="adicionarMusica(item.uri, item.desc)"><button type="button" class="btn btn-link"><i class="material-icons text-success">add</i></button></td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div class="text-center">
-                <button type="button" class="btn btn-outline-danger btn-sm" v-on:click="alterarStatus()" v-if="status === true">
-                    desativar
-                </button>
-                <button type="button" class="btn btn-outline-success btn-sm" v-on:click="alterarStatus()" v-if="status === false">
-                    ativar
-                </button>
             </div>
         </div>
     </div>
@@ -98,7 +102,7 @@
 
             Echo.channel('filas')
                 .listen('MusicaAdicionada', (e) => {
-                    if (e.item.id_fila === self.idFilaAtual) {
+                    if (e.musica.id_fila === self.idFilaAtual) {
                         self.getProximasMusicas();
                     }
                 }).listen('MusicaFinalizada', (e) => {
@@ -129,6 +133,7 @@
                 proximaMusicaAutor: ' ',
                 imgMusicaAtual: ' ',
                 musicaAtual: ' ',
+                objMusicaAtual: {},
                 musicaAtualAutor: ' ',
                 n_layout: 'topCenter',
                 status: 0,
@@ -185,6 +190,7 @@
                         self.musicaAtualAutor = res.data.autor;
                         self.imgMusicaAtual = res.data.image;
                         self.statusMusicaAtual = res.data.status;
+                        self.objMusicaAtual = res.data;
 
                         this.$refs.topProgress.done();
 
@@ -349,7 +355,30 @@
                     self.$root.$emit('notificar', 'Ocorreu um erro ao passar a música. ', 'error');
                     console.log(err);
                 });
-            }
+            },
+            likeMusica() {
+                const self = this;
+                this.$refs.topProgress.start();
+                self.objMusicaAtual.liked = !self.objMusicaAtual.liked;
+
+                axios.post('/api/like/'+self.objMusicaAtual.id)
+                    .then(res => {
+                        if (!res.data.status) {
+                            self.$refs.topProgress.fail();
+                            self.$root.$emit('notificar', res.data.message, 'error');
+                        } else {
+                            self.getMusicaAtual();
+                        }
+                        this.$refs.topProgress.done();
+
+                    }).catch(err => {
+                    console.log(err);
+                    self.$refs.topProgress.fail();
+                    this.$refs.topProgress.done();
+                    self.$root.$emit('notificar', 'Ocorreu um erro ao dar like na música. ', 'error');
+                })
+
+            },
         }
     }
 </script>
@@ -371,6 +400,17 @@
     textarea:focus,
     button:focus {
         outline: none;
+    }
+
+    .item-image {
+        box-shadow: 11px 11px 11px rgba(0, 0, 33,.2);
+    }
+
+    .item-image:hover {
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.05);
+        box-shadow: 11px 11px 11px rgba(33,33,33,.2);
     }
 
 </style>

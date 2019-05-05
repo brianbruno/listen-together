@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                @if($user->utliza_player_site)
                 <spotify-player></spotify-player>
+                @endif
                 {{--<reprodutor></reprodutor>--}}
                 <filas></filas>
             </div>

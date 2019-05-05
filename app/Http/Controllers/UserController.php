@@ -120,6 +120,8 @@ class UserController extends Controller {
                         $diferenca = $tempoAtual - $inicioMusica;
                         $diferencaMs = $diferenca * 1000;
 
+                        $diferencaMs = $diferencaMs < 0 ? 0 : $diferencaMs;
+
                         ob_start();
                         $retornoMusica = ProximaMusica::dispatchNow($user, $musica->spotify_uri, $diferencaMs);
                         ob_end_clean();

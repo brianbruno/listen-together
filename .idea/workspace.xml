@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="601a2acb-3cff-426e-9517-c3aa4d6a3671" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,20 +34,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="70" column="40" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+            <state relative-caret-position="195">
+              <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
               <folding>
-                <element signature="n#input#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#6200#7325#0" />
-                <element signature="e#8190#9107#0" />
-                <element signature="e#9135#9728#0" />
-                <element signature="e#9760#11705#0" />
-                <element signature="e#11746#12700#0" />
-                <element signature="e#12736#13642#0" />
-                <element signature="e#13669#14572#0" />
+                <element signature="e#122#135#0#PHP" expanded="true" />
+                <element signature="e#558#1999#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Jobs/ProcessarFilas.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-315">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+              <folding>
+                <element signature="e#28#58#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+              <folding>
+                <element signature="e#33#72#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,17 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-77">
-              <caret line="21" column="23" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../teste.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+            <state relative-caret-position="17">
+              <caret line="1" column="7" selection-start-line="1" selection-end-line="1" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -117,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Listeners/FinalizarMusica.php" />
         <option value="$PROJECT_DIR$/resources/views/app/fila.blade.php" />
         <option value="$PROJECT_DIR$/app/Jobs/BuscarIdHistoricoMusicas.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/RemoverUriHistorico.php" />
@@ -139,7 +149,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Integration/TwitterController.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/BuscarMusicasTweets.php" />
         <option value="$PROJECT_DIR$/commands.txt" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AutoPlay.php" />
         <option value="$PROJECT_DIR$/app/Jobs/TrocarCapaFila.php" />
@@ -165,9 +174,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Jobs/ProcessarFilas.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/js/components/ReprodutorComponent.vue" />
         <option value="$PROJECT_DIR$/../../teste.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
       </list>
     </option>
   </component>
@@ -303,14 +314,25 @@
               <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
               <item name="listen-together" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
               <item name="listen-together" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="listen-together" type="b2602c69:ProjectViewProjectNode" />
+              <item name="listen-together" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -379,12 +401,12 @@
       <workItem from="1556922748517" duration="17667000" />
       <workItem from="1556971777142" duration="2206000" />
       <workItem from="1556987346810" duration="5511000" />
-      <workItem from="1557068104308" duration="8812000" />
+      <workItem from="1557068104308" duration="10388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153888000" />
+    <option name="totallyTimeSpent" value="155464000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -399,7 +421,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23146747" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23146747" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -447,13 +469,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Integration/VagalumeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="20" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/ArmazenarTweetsUser.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -461,13 +476,6 @@
           <folding>
             <element signature="e#40#53#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -815,27 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
-          <folding>
-            <element signature="e#122#135#0#PHP" expanded="true" />
-            <element signature="e#558#1999#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Jobs/ProcessarFilas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding>
-            <element signature="e#28#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Filas.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2686">
@@ -873,17 +860,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../teste.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/ProcessarFilas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding>
+            <element signature="e#28#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="7" selection-start-line="1" selection-end-line="1" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+          <folding>
+            <element signature="e#33#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
+          <folding>
+            <element signature="e#122#135#0#PHP" expanded="true" />
+            <element signature="e#558#1999#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>

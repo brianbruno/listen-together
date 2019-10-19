@@ -145,7 +145,7 @@
             }
         },
         props: {
-            idFila: Number,
+            idFila,
         },
         methods: {
             atualizarComponentes() {

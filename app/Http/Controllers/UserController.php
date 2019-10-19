@@ -85,7 +85,6 @@ class UserController extends Controller {
             'data'    => [],
         ];
 
-
         try {
             $id_fila = $request->fila;
             $fila = Fila::find($id_fila);

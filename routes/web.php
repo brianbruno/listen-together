@@ -11,14 +11,14 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', function () {
+    return redirect('home');
+});
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index');
+//Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/authspotify/{id_user?}', 'AuthSpotifyController@autorizar')->name('autorizar-spotify');
 Route::get('/authspotify/{id_user?}', 'AuthSpotifyController@autorizar')->name('authspotify');

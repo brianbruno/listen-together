@@ -16,7 +16,17 @@ use SpotifyWebAPI;
 
 class AuthSpotifyController extends Controller {
 
+
+    /**
+     * AuthSpotifyController constructor.
+     */
+    public function __construct()
+    {
+        //
+    }
+
     public function autorizar(Request $request, $id_user = null) {
+
         $url = env('APP_URL', 'http://localhost:8000');
 
         $session = new SpotifyWebAPI\Session(

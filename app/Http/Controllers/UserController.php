@@ -108,33 +108,34 @@ class UserController extends Controller {
                     ob_end_clean();
                     $retorno['message'] = 'Fila precisou ser iniciada. Operação realizada com sucesso.';
                 } else {
-                    if ($item != null) {
-                        $musica = Musica::find($item->id_musica);
 
-                        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $item->updated_at);
-                        $inicioMusica =  $date->format('U');
-                        $date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
-                        $tempoAtual =  $date->format('U');
-
-                        $diferenca = $tempoAtual - $inicioMusica;
-                        $diferencaMs = $diferenca * 1000;
-
-                        $diferencaMs = $diferencaMs < 0 ? 0 : $diferencaMs;
-
-                        ob_start();
-                        $retornoMusica = ProximaMusica::dispatchNow($user, $musica->spotify_uri, $diferencaMs);
-                        ob_end_clean();
-
-                        if (strlen($retornoMusica) > 0) {
-                            throw new \Exception($retornoMusica);
-                        }
-
-                        $item->status = "I";
-                        $item->save();
-                        $retorno['message'] = 'Operação realizada com sucesso.';
-                    } else {
-                        throw new \Exception("Nenhuma música em reprodução.");
+                    if (empty($item)) {
+                        $item = $fila->getProximaMusica();
                     }
+
+                    $musica = Musica::find($item->id_musica);
+
+                    $date = \DateTime::createFromFormat('Y-m-d H:i:s', $item->updated_at);
+                    $inicioMusica =  $date->format('U');
+                    $date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+                    $tempoAtual =  $date->format('U');
+
+                    $diferenca = $tempoAtual - $inicioMusica;
+                    $diferencaMs = $diferenca * 1000;
+
+                    $diferencaMs = $diferencaMs < 0 ? 0 : $diferencaMs;
+
+                    ob_start();
+                    $retornoMusica = ProximaMusica::dispatchNow($user, $musica->spotify_uri, $diferencaMs);
+                    ob_end_clean();
+
+                    if (strlen($retornoMusica) > 0) {
+                        throw new \Exception($retornoMusica);
+                    }
+
+                    $item->status = "I";
+                    $item->save();
+                    $retorno['message'] = 'Operação realizada com sucesso.';
                 }
 
             } else {

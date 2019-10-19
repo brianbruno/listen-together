@@ -23,6 +23,7 @@ class FinalizarMusica {
         $item = $event->getItem();
         $musica = Musica::find($item->id_musica);
         $tempoTotalSegundos = $musica->ms_duration / 1000;
+        echo "EVENT FINALIZAR MUSICA EM $tempoTotalSegundos SEGUNDOS \n";
         \App\Jobs\FinalizarMusica::dispatch($item)->delay(now()->addSeconds($tempoTotalSegundos));
     }
 

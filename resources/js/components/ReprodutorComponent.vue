@@ -145,7 +145,7 @@
             }
         },
         props: {
-            idFila,
+            idFila: String,
         },
         methods: {
             atualizarComponentes() {
@@ -301,6 +301,8 @@
                             self.$root.$emit('notificar', 'Música adicionada com sucesso. ', 'success');
                         }
 
+                        self.getProximasMusicas();
+
                     }).catch(err => {
                     self.$refs.topProgress.fail();
                     self.$refs.topProgress.done();
@@ -324,6 +326,8 @@
                         } else {
                             self.$root.$emit('notificar', 'Música removida com sucesso. ', 'success');
                         }
+
+                        self.getProximasMusicas();
 
                     }).catch(err => {
                     self.$refs.topProgress.fail();

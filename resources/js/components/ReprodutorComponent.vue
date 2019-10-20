@@ -119,9 +119,15 @@
                 self.getProximasMusicas();
             });
 
-            setTimeout(function () {
+            /*setTimeout(function () {
                 location.reload();
-            }, 600000);
+            }, 600000);*/
+
+            setInterval(function () {
+                if (self.idFilaAtual) {
+                    self.getMusicaAtual();
+                }
+            }, 1000)
         },
         components: {
             vueTopprogress

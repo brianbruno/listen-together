@@ -117,6 +117,7 @@
                 }
             }).listen('MusicaRemovida', (e) => {
                 self.getProximasMusicas();
+                self.getProximasMusicas();
             });
 
             /*setTimeout(function () {
@@ -189,7 +190,7 @@
             },
             getMusicaAtual() {
                 const self = this;
-                this.$refs.topProgress.start();
+                //this.$refs.topProgress.start();
                 axios.get('/api/getmusicaatual/'+self.idFilaAtual)
                     .then(res => {
                         self.musicaAtual = res.data.data;
@@ -198,11 +199,11 @@
                         self.statusMusicaAtual = res.data.status;
                         self.objMusicaAtual = res.data;
 
-                        this.$refs.topProgress.done();
+                        //this.$refs.topProgress.done();
 
                     }).catch(err => {
-                    self.$refs.topProgress.fail();
-                    this.$refs.topProgress.done();
+                    //self.$refs.topProgress.fail();
+                    //this.$refs.topProgress.done();
                     self.$root.$emit('notificar', 'Ocorreu um erro ao buscar os dados. ', 'error');
                     console.log(err);
                 })

@@ -127,6 +127,7 @@
             setInterval(function () {
                 if (self.idFilaAtual) {
                     self.getMusicaAtual();
+                    self.getProximasMusicas();
                 }
             }, 3000)
         },

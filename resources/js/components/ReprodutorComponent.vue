@@ -127,7 +127,7 @@
                 if (self.idFilaAtual) {
                     self.getMusicaAtual();
                 }
-            }, 1000)
+            }, 3000)
         },
         components: {
             vueTopprogress
@@ -161,7 +161,7 @@
             },
             getProximasMusicas() {
                 const self = this;
-                this.$refs.topProgress.start();
+                //this.$refs.topProgress.start();
                 axios.get('/api/getproximasmusicas/'+self.idFilaAtual)
                     .then(res => {
                         const musicas = res.data.data;
@@ -178,11 +178,11 @@
                         } else {
                             self.proximaMusica = "Aleatória!";
                         }
-                        this.$refs.topProgress.done();
+                        //this.$refs.topProgress.done();
 
                     }).catch(err => {
-                    self.$refs.topProgress.fail();
-                    this.$refs.topProgress.done();
+                    //self.$refs.topProgress.fail();
+                    //this.$refs.topProgress.done();
                     self.$root.$emit('notificar', 'Ocorreu um erro ao buscar os dados. ', 'error');
                     console.log(err);
                 })

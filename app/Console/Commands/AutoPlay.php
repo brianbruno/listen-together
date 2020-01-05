@@ -56,6 +56,7 @@ class AutoPlay extends Command
         })->get();
 
         foreach ($filas as $fila) {
+            echo $fila->name . "\n";
             ProcessarFilas::dispatch($fila);
         }
 

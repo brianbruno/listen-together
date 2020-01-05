@@ -10,6 +10,9 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use Notifiable, HasApiTokens;
+  
+    protected $appends = ['seconds_update'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +65,16 @@ class User extends Authenticatable
 
     public function afinidadeMusica($nomeMusica) {
         return $this->afinidade($nomeMusica);
+    }
+  
+  
+    public function getSecondsUpdateAttribute() {
+      $updated_atdate = \Carbon\Carbon::parse($this->updated_at);
+      $nowdate = \Carbon\Carbon::now();
+
+      $result = $updated_atdate->diffInSeconds($nowdate, false);
+      
+      return $result;
     }
 
 }

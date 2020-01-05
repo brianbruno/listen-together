@@ -50,6 +50,11 @@ class AuthSpotifyController extends Controller {
 
 //        $request->session()->put('id_user', $id_user);
         Storage::disk('local')->put('id_user', $id_user);
+        if (strpos(str_replace(url('/'), '', url()->previous()), 'ouvirjuntos.brian.place') === false) {
+            Storage::disk('local')->put('mobile', '1');
+        } else {
+            Storage::disk('local')->put('mobile', '0');
+        }
 
         header('Location: ' . $session->getAuthorizeUrl($options));
         die();
@@ -71,14 +76,19 @@ class AuthSpotifyController extends Controller {
         $refreshToken = $session->getRefreshToken();
 
         $id_user = Storage::get('id_user');
+        $mobile = Storage::get('mobile');
 //        $id_user = $request->session()->get('key');
         $user = User::find($id_user);
         $user->spotify_token = $accessToken;
         $user->spotify_refreshtoken = $refreshToken;
-        $user->save();
-
-//        echo "<script>window.close();</script>";
-        return redirect()->route('home');
+        $user->save();      
+  
+        if ($mobile == '1') {
+          return redirect(str_replace(url('/'), '', url()->previous()).'/#/home');  
+        } else {
+          return redirect()->route('home');  
+        }
+        
     }
 
     public static function refreshToken($user = null) {

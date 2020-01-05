@@ -39,7 +39,7 @@ class TrocarCapaFila implements ShouldQueue
 
 
         $musica = Musica::find($itemFila->id_musica);
-        if (empty($musica->spotify_image)) {
+        if (empty($musica->spotify_image) or empty($musica->popularity)) {
             $users = User::where('spotify_token', '<>', null)->where('spotify_status', '1')->get();
 
             foreach ($users as $user) {
@@ -51,6 +51,8 @@ class TrocarCapaFila implements ShouldQueue
                     $urlImage = $track->album->images[0]->url;
 
                     $musica->spotify_image = $urlImage;
+                    $musica->popularity = $track->popularity;
+                    $musica->explicit = $track->explicit;
                     $musica->save();
 
                     if ($fila->capa_dinamica) {

@@ -34,10 +34,17 @@ Route::group([
         Route::get('user', 'AuthController@user');
 
         Route::get('/getmusicaatual/{idfila?}', 'FilaController@getMusicaAtual');
+        Route::get('/getproximasmusicas/{idfila}', 'FilaController@proximasMusicas');
         Route::post('/buscarmusica', 'FilaController@buscarMusica');
         Route::post('/adicionarmusica', 'FilaController@adicionarMusica');
         Route::get('/filas', 'FilaController@getFilas');
         Route::post('/trocarfila', 'UserController@trocarFila');
+        Route::post('/buscarfilas', 'FilaController@buscarFila');
+        Route::get('/like/{idmusica}', 'MusicaLikeController@likeMusica');
+        Route::post('/removermusica', 'FilaController@removerMusica');
+        Route::get('/user/filas', 'FilaController@getUserFilas');
+        Route::get('/user/fila/{idFila}', 'FilaController@getInfoFila');
+      
     });
 });
 

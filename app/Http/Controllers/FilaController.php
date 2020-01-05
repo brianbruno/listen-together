@@ -68,7 +68,7 @@ class FilaController extends Controller {
             $fila = Fila::find($request->id_fila);
 
             if ($fila == null) {
-                throw new \Exception("Fila não cadastrada");
+                throw new \Exception("Fila não informada.");
             }
 
             $musica = Musica::encontrarUriMusica($request->uri);
@@ -170,7 +170,7 @@ class FilaController extends Controller {
         try {
 
             $results = DB::select("
-                  SELECT musicas.name name, itens_fila.id, filas.name queue_name, users.name username FROM itens_fila 
+                  SELECT musicas.name name, musicas.spotify_image, itens_fila.id, filas.name queue_name, users.name username FROM itens_fila 
                   LEFT JOIN filas ON itens_fila.id_fila = filas.id 
                   LEFT JOIN users ON itens_fila.id_user = users.id
                   LEFT JOIN musicas ON musicas.id = itens_fila.id_musica
@@ -282,6 +282,49 @@ class FilaController extends Controller {
         return response()->json($retorno, 200);
     }
 
+    public function getUserFilas() {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+            $user = Auth::user();
+            $filas = $user->filas()->get();
+
+            $retorno['data'] = $filas;
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+    } 
+  
+    public function getInfoFila($idFila) {
+        $retorno = [
+            'message' => 'Não inicializado',
+            'status'  => false,
+            'data'    => [],
+        ];
+
+
+        try {
+            $fila = Fila::where('id', $idFila)->first();
+
+            $retorno['data'] = $fila;
+            $retorno['message'] = 'Dados recuperados com sucesso.';
+            $retorno['status'] = true;
+        } catch(\Exception $e) {
+            $retorno['message'] = $e->getMessage();
+        }
+
+        return response()->json($retorno, 200);
+    } 
+  
     public function getFilasUser() {
 
         $user = Auth::user();

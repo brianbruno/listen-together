@@ -60,10 +60,17 @@ class Musica extends Model {
 
     public static function cadastrarMusica($track) {
         $musica = new Musica();
+      
+        $urlImage = $track->album->images[0]->url;
+      
         $musica->name = $track->artists[0]->name. " - " . $track->name;
         $musica->spotify_uri = $track->uri;
         $musica->spotify_id = $track->id;
+
+        $musica->spotify_image = $urlImage;
         $musica->ms_duration = $track->duration_ms;
+        $musica->popularity = $track->popularity;
+        $musica->explicit = $track->explicit;
         $musica->save();
 
         return $musica;

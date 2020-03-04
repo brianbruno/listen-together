@@ -24,6 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+        // Teste
         $path = base_path();
 
         $schedule->call(function() use($path) {
